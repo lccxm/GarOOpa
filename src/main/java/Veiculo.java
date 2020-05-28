@@ -12,5 +12,17 @@ public class Veiculo {
         this.cor = cor;
     }
 
+    public String getPlaca(){
+        return placa;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
 
 }

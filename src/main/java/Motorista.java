@@ -13,5 +13,21 @@ public class Motorista {
         this.veiculo = veiculo;
     }
 
+    public String getCpf(){
+        return cpf;
+    }
+
+    public String getNome(){
+        return nome;
+    }
+
+    public Veiculo getVeiculo(){
+        return veiculo;
+    }
+
+
+
+
+
 
 }
