@@ -1,4 +1,4 @@
-# Entidades:
+# Nível de Entidades:
 * Veículos
 * Motorista
 * Passageiro
@@ -25,8 +25,8 @@
       * Avalicoes
         * Passageiro2Motorista
         * Motorista2Passageiro
-* Interface
-  * TelasPAssageiro
+# Nível de Interface
+  * TelasPassageiro
     * TelaSolicitacaoViagem
     * TelaDadosViagem
     * TelaAvaliarMotorista
@@ -34,5 +34,6 @@
     * TelaSelecionaViagem
     * TelaAvaliarPassageiro
 
-
+# Nível de Tecnologias
+  * JavaFX
     
