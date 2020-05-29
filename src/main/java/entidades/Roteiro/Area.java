@@ -1,22 +1,22 @@
 package entidades.Roteiro;
 
 public class Area {
-    private Ponto pSupEsq, pInfDir;
+    private Ponto pSupDir, pInfEsq;
 
-    public Area(Ponto pSupEsq, Ponto pInfDir) {
-        if ((pSupEsq.getX() >= pInfDir.getX()) || (pSupEsq.getY() <= pInfDir.getY())) {
+    public Area(Ponto pSupDir, Ponto pInfEsq) throws IllegalArgumentException {
+        if ((pInfEsq.getX() >= pSupDir.getX()) || (pSupDir.getY() <= pInfEsq.getY())) {
             throw new IllegalArgumentException("O retangulo deve ser definido pela diagonal principal");
         } else {
-            this.pSupEsq = pSupEsq;
-            this.pInfDir = pInfDir;
+            this.pSupDir = pSupDir;
+            this.pInfEsq = pInfEsq;
         }
     }
 
     public Ponto getPSupEsq() {
-        return pSupEsq;
+        return pSupDir;
     }
 
-    public Ponto getpInfDir() {
-        return pInfDir;
+    public Ponto getpInfEsq() {
+        return pInfEsq;
     }
 }
