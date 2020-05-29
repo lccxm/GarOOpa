@@ -1,14 +1,9 @@
-package entidades.Roteiro;
 
 public class Cohen {
     public static void main(String[] args) {
-        Ponto pMax = new Ponto(5, 7);
-        Ponto pMin = new Ponto(7, 5);
-        Area a = new Area(pMax, pMin);
-        Cohen c = new Cohen(a);
-        Ponto p1 = new Ponto(5,7);
-        Ponto p2 = new Ponto(7,5);
-        System.out.println(c.cohenSutherlandClip(p1, p2));
+        Ponto p1 = new Ponto(1,5);
+        Ponto p2 = new Ponto(4,1);
+        System.out.println(cohenSutherlandClip(p1, p2));
     }
 
     public static int INSIDE = 0;
@@ -17,37 +12,28 @@ public class Cohen {
     public static int BOTTOM = 4;
     public static int TOP = 8;
 
-    private Area area;
-    private int xMax; 
-    private int yMax; 
-    private int xMin; 
-    private int yMin; 
+    public static double xMax = 10.0;
+    public static double yMax = 8.0;
+    public static double xMin = 4.0;
+    public static double yMin = 4.0;
     
-    public Cohen(Area area){
-        this.area = area;
-        xMax = (int)area.getPSupEsq().getX();
-        yMax = (int)area.getPSupEsq().getY();
-        xMin = (int)area.getpInfDir().getX();
-        yMin = (int)area.getpInfDir().getY();
-        System.out.printf("XMax: %d, xMin: %d\nyMax: %d, yMin: %d\n", xMax, xMin, yMax, yMin);
-    }
 
-    public int computeCode(Ponto p){
+
+    public static int computeCode(Ponto p){
         int code = INSIDE;
         if (p.getX() < xMin)
-            code |= LEFT; //System.out.println("1");
+            code |= LEFT;
         else if (p.getX() > xMax)
-            code |= RIGHT; //System.out.println("2");
+            code |= RIGHT;
         if (p.getY() < yMin)
-            code |= BOTTOM; //System.out.println("3");
+            code |= BOTTOM;
         else if (p.getY() > yMax)
-            code |= TOP; //System.out.println("4");
+            code |= TOP;
 
         return code;
     }
 
-    public SituacaoReta cohenSutherlandClip(Ponto p1, Ponto p2){
-        System.out.printf("p1.x: %f, p1.y: %f\np2.x: %f, p2.y: %f\n", p1.getX(), p1.getY(), p2.getX(), p2.getY());
+    public static SituacaoReta cohenSutherlandClip(Ponto p1, Ponto p2){
         int code1 = computeCode(p1);
         int code2 = computeCode(p2);
         boolean accept = false;
@@ -57,9 +43,41 @@ public class Cohen {
                 accept = true;
                 break;
             }
-            else
+            else if ((code1 & code2) != 0)
                 break;
-        } 
+            else {
+                double x = 1.0;
+                double y = 1.0;
+                int codeOut;
+                if (code1 != 0)
+                    codeOut = code1;
+                else
+                    codeOut = code2;
+                if ((codeOut & TOP) != 0){
+                    x = p1.getX() + (p2.getX() - p1.getX()) * (yMax - p1.getY()) / (p2.getY() - p1.getY());;
+                    y = yMax;
+                } else if ((codeOut & BOTTOM) != 0){
+                    x = p1.getX() + (p2.getX() - p1.getX()) * (yMin - p1.getY()) / (p2.getY() - p1.getY());;
+                    y = yMin;
+                } else if ((codeOut & RIGHT) != 0){
+                    y = p1.getY() + (p2.getY() - p1.getY()) * (xMax - p1.getX()) / (p2.getX() - p1.getX());;
+                    x = xMax;
+                } else if ((codeOut & LEFT) != 0){
+                    y = p1.getY() + (p2.getY() - p1.getY()) * (xMin - p1.getX()) / (p2.getX() - p1.getX());;
+                    x = xMin;
+                }
+                if (codeOut == code1){
+                    p1.setX(x);
+                    p1.setY(y);
+                    code1 = computeCode(p1);
+                }
+                else{
+                    p2.setX(x);
+                    p2.setY(y);
+                    code2 = computeCode(p2);
+                }
+            }
+        }
         if (accept)
             return SituacaoReta.INTERSECTA;
         else
