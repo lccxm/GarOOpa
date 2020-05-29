@@ -1,3 +1,5 @@
+package entidades;
+
 public class Passageiro {
     private String cpf;
     private String nome;

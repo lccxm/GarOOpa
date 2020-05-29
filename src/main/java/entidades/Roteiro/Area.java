@@ -1,3 +1,5 @@
+package entidades.Roteiro;
+
 public class Area {
     private Ponto pSupEsq, pInfDir;
 

@@ -1,3 +1,7 @@
+package entidades;
+
+import entidades.Roteiro.Area;
+
 public class Bairro {
 
     private String nome;

@@ -1,3 +1,5 @@
+package entidades;
+
 public class Motorista {
 
     private String cpf;

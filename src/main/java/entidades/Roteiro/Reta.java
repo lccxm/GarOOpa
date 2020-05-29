@@ -1,3 +1,5 @@
+package entidades.Roteiro;
+
 public class Reta {
     private Ponto p1,p2;
 

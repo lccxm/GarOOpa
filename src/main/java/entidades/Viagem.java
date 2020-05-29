@@ -1,3 +1,7 @@
+package entidades;
+
+import entidades.Roteiro.Roteiro;
+
 import java.time.LocalTime;
 
 public class Viagem {
