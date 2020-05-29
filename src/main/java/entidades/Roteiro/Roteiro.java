@@ -3,6 +3,7 @@ package entidades.Roteiro;
 import entidades.Bairro;
 import entidades.Cidade;
 
+
 public class Roteiro {
     private Cidade cidade;
     private Bairro bairroOrigem;
