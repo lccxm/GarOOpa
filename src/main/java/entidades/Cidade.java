@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 package entidades;
 
+=======
+>>>>>>> f856073fea6f9567ed26f5e8b10c8886239fdeef
 import java.util.List;
 
 public class Cidade {
