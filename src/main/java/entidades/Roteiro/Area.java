@@ -15,4 +15,8 @@ public class Area {
     public Ponto getPSupEsq() {
         return pSupEsq;
     }
+
+    public Ponto getpInfDir() {
+        return pInfDir;
+    }
 }
