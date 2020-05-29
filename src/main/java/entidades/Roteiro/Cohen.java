@@ -1,10 +1,30 @@
 package entidades.Roteiro;
+<<<<<<< HEAD
 
 public class Cohen {
     public static void main(String[] args) {
         Ponto p1 = new Ponto(7,9);
         Ponto p2 = new Ponto(11,4);
         System.out.println(cohenSutherlandClip(p1, p2));
+=======
+
+import entidades.Roteiro.Area;
+import entidades.Roteiro.Ponto;
+import entidades.Roteiro.Reta;
+import entidades.Roteiro.SituacaoReta;
+
+
+public class Cohen {
+    public static void main(String[] args) throws IllegalArgumentException {
+        Ponto p1 = new Ponto(5,5);
+        Ponto p2 = new Ponto(7,7);
+        Reta rTest = new Reta(p1, p2);
+        Ponto p3 = new Ponto(10, 8);
+        Ponto p4 = new Ponto(4,4);
+        Area aTest = new Area(p3, p4);
+        Cohen c = new Cohen(aTest, rTest);
+        System.out.println(c.cohenSutherlandClip());
+>>>>>>> bf1f3037da49f87c1266b0b620996f218a78aad1
     }
 
     public static int INSIDE = 0;  //0000
@@ -13,14 +33,26 @@ public class Cohen {
     public static int BOTTOM = 4;  //0100
     public static int TOP = 8;     //1000
 
-    public static double xMax = 10.0;
-    public static double yMax = 8.0;
-    public static double xMin = 4.0;
-    public static double yMin = 4.0;
+    public double xMax;
+    public double yMax;
+    public double xMin;
+    public double yMin;
+
+    private Area a;
+    private Reta r;
     
 
+    public Cohen(Area a, Reta r) {
+        this.a = a;
+        this.r = r;
+        xMax = a.getPSupEsq().getX();
+        yMax = a.getPSupEsq().getY();
+        xMin = a.getpInfEsq().getX();
+        yMin = a.getpInfEsq().getY();
+    }
 
-    public static int computeCode(Ponto p){
+
+    public int computeCode(Ponto p){
         int code = INSIDE;
         if (p.getX() < xMin)
             code |= LEFT;
@@ -34,7 +66,9 @@ public class Cohen {
         return code;
     }
 
-    public static SituacaoReta cohenSutherlandClip(Ponto p1, Ponto p2){
+    public SituacaoReta cohenSutherlandClip(){
+        Ponto p1 = r.getP1();
+        Ponto p2 = r.getP2();
         int code1 = computeCode(p1);
         int code2 = computeCode(p2);
         boolean accept = false;
