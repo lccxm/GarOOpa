@@ -1,3 +1,4 @@
+package entidades.Roteiro;
 
 public class Ponto {
     private double x;

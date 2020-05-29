@@ -1,16 +1,17 @@
+package entidades.Roteiro;
 
 public class Cohen {
     public static void main(String[] args) {
-        Ponto p1 = new Ponto(1,5);
-        Ponto p2 = new Ponto(4,1);
+        Ponto p1 = new Ponto(7,9);
+        Ponto p2 = new Ponto(11,4);
         System.out.println(cohenSutherlandClip(p1, p2));
     }
 
-    public static int INSIDE = 0;
-    public static int LEFT = 1;
-    public static int RIGHT = 2;
-    public static int BOTTOM = 4;
-    public static int TOP = 8;
+    public static int INSIDE = 0;  //0000
+    public static int LEFT = 1;    // 0001
+    public static int RIGHT = 2;   // 0010
+    public static int BOTTOM = 4;  //0100
+    public static int TOP = 8;     //1000
 
     public static double xMax = 10.0;
     public static double yMax = 8.0;
