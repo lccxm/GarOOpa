@@ -12,11 +12,11 @@ public class Area {
         }
     }
 
-    public Ponto getPSupEsq() {
+    public Ponto getPSupDir() {
         return pSupDir;
     }
 
-    public Ponto getpInfEsq() {
+    public Ponto getPInfEsq() {
         return pInfEsq;
     }
 }
