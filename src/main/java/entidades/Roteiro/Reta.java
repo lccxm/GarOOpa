@@ -26,5 +26,15 @@ public class Reta {
     public String toString() {
         return "Reta [p1=" + p1 + ", p2=" + p2 + "]";
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " p1='" + p1 + "'" +
+            ", p2='" + p2 + "'" +
+            "}";
+    }
+
 }
 

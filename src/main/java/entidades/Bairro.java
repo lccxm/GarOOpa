@@ -41,4 +41,16 @@ public class Bairro {
         int y = ((int)limites.getPInfEsq().getY() + (int)limites.getPSupDir().getY())/2;
         return new Ponto(x,y);
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " nome='" + nome + "'" +
+            ", limites='" + limites + "'" +
+            ", custoBasico='" + custoBasico + "'" +
+            ", cidade='" + cidade + "'" +
+            "}";
+    }
+
 }

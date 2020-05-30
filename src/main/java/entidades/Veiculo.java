@@ -36,4 +36,17 @@ public class Veiculo {
         if (tipo.equals(TipoVeiculo.LUXO) && b)
             bagageiroG = true;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " placa='" + placa + "'" +
+            ", marca='" + marca + "'" +
+            ", cor='" + cor + "'" +
+            ", tipo='" + tipo + "'" +
+            ", bagageiroG='" + bagageiroG + "'" +
+            "}";
+    }
+
 }

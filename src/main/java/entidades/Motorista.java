@@ -61,6 +61,19 @@ public class Motorista {
     }
 
 
+    @Override
+    public String toString() {
+        return "{" +
+            " cpf='" + cpf + "'" +
+            ", nome='" + nome + "'" +
+            ", somaAvaliacoes='" + somaAvaliacoes + "'" +
+            ", quantAvaliacoes='" + quantAvaliacoes + "'" +
+            ", veiculo='" + veiculo + "'" +
+            ", formasPgto='" + formasPgto + "'" +
+            ", nota='" + nota + "'" +
+            "}";
+    }
+
 
 
 }

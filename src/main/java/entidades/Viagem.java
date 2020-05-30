@@ -44,4 +44,18 @@ public class Viagem {
     public double getCusto() {
         return this.custo;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " identificador='" + identificador + "'" +
+            ", dataHora='" + dataHora + "'" +
+            ", roteiro='" + roteiro + "'" +
+            ", motorista='" + motorista + "'" +
+            ", passageiro='" + passageiro + "'" +
+            ", custo='" + custo + "'" +
+            "}";
+    }
+
 }

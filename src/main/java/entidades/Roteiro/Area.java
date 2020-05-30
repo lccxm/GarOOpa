@@ -19,4 +19,14 @@ public class Area {
     public Ponto getPInfEsq() {
         return pInfEsq;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " pSupDir='" + pSupDir + "'" +
+            ", pInfEsq='" + pInfEsq + "'" +
+            "}";
+    }
+
 }

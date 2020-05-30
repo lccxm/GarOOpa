@@ -29,4 +29,14 @@ public class Ponto {
     public String toString() {
         return "Ponto [x=" + x + ", y=" + y + "]";
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " x='" + x + "'" +
+            ", y='" + y + "'" +
+            "}";
+    }
+
 }

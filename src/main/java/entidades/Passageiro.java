@@ -30,4 +30,14 @@ public class Passageiro {
     }
 
 
+    @Override
+    public String toString() {
+        return "{" +
+            " cpf='" + cpf + "'" +
+            ", nome='" + nome + "'" +
+            ", somatorioAval='" + somatorioAval + "'" +
+            ", qtdAval='" + qtdAval + "'" +
+            "}";
+    }
+    
 }

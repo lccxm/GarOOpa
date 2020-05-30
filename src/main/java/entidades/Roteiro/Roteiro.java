@@ -42,4 +42,15 @@ public class Roteiro {
         }
         return bairrosIntersec;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " cidade='" + cidade + "'" +
+            ", bairroOrigem='" + bairroOrigem + "'" +
+            ", bairroDestino='" + bairroDestino + "'" +
+            "}";
+    }
+
 }

@@ -30,4 +30,13 @@ public class Cidade {
         return bairros.get(index);
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " nome='" + nome + "'" +
+            ", bairros='" + bairros + "'" +
+            "}";
+    }
+
 }
