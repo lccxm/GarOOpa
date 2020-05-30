@@ -19,7 +19,7 @@ public class RepositorioDeBairros {
     }
 
     public void carregaBairros() throws FileNotFoundException, IllegalArgumentException {
-        List<String[]> lst = GetRawData.fromCSV("fileName");
+        List<String[]> lst = GetRawData.fromCSV("bairros.dat");
         for (String[] data: lst){
             String nome = data[0];
             String cidade = data[1];
@@ -27,7 +27,9 @@ public class RepositorioDeBairros {
             Ponto pInfEsq = new Ponto(Integer.parseInt(data[3]), Integer.parseInt(data[4]));
             Ponto pSupDir = new Ponto(Integer.parseInt(data[5]), Integer.parseInt(data[6]));
             Area limites = new Area(pInfEsq, pSupDir);
-            bairros.add(new Bairro(nome, limites, custoBasico));
+            Bairro b = new Bairro(nome, limites, custoBasico);
+            b.setCidade(cidade);
+            bairros.add(b);
         }
         pushBairros2Cidades();
 
@@ -36,10 +38,14 @@ public class RepositorioDeBairros {
     private void pushBairros2Cidades(){
         List<Cidade> cidades = RepositorioDeCidades.getCidades();
         for (Bairro b: bairros){
-            for (Cidade cidade : cidades){
-                if (b.geCidade().equals(cidade.getNome()))
-                    cidade.addBairro(b);
+            for (Cidade c : cidades){
+                if (b.geCidade().equals(c.getNome()))
+                    c.addBairro(b);
             }
         }
+    }
+
+    public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
+        new RepositorioDeBairros();
     }
 }

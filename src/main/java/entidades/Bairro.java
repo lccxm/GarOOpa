@@ -4,7 +4,7 @@ import entidades.Roteiro.Area;
 import entidades.Roteiro.Ponto;
 
 public class Bairro {
-
+    
     private String nome;
     private Area limites;
     private int custoBasico;

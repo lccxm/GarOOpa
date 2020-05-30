@@ -27,5 +27,7 @@ public class RepositorioDeCidades {
             cidades.add(new Cidade(nome));
         }
     }
-
+    public static void main(String[] args) throws FileNotFoundException {
+        new RepositorioDeCidades();
+    }
 }

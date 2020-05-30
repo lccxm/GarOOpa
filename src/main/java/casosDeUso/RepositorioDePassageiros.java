@@ -25,4 +25,8 @@ public class RepositorioDePassageiros {
             passageiros.add(new Passageiro(cpf, nome, somatorioAval, qtdAval));
         }
     }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        new RepositorioDePassageiros();
+    }
 }
