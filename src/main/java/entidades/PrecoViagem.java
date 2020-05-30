@@ -49,7 +49,7 @@ public class PrecoViagem {
         return preco;
     }
 
-    public double calculaPrecoAdicional(Veiculo v ,int precoBasico){
+    public double calculaPrecoAdicional(Motorista motorista ,int precoBasico){
 
     }
 }

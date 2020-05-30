@@ -5,13 +5,14 @@ public class Veiculo {
     private String placa;
     private String marca;
     private String cor;
-    private int tipo;
+    private TipoVeiculo tipo;
     private boolean bagageiroG;
 
-    public Veiculo(String placa, String marca, String cor){
+    public Veiculo(String placa, String marca, String cor, TipoVeiculo tipo ){
         this.placa = placa;
         this.marca = marca;
         this.cor = cor;
+        this.tipo = tipo;
     }
 
     public String getPlaca(){
@@ -26,5 +27,7 @@ public class Veiculo {
         return marca;
     }
 
-
+    public TipoVeiculo getTipo(){
+        return tipo;
+    }
 }
