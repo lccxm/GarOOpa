@@ -1,22 +1,29 @@
 package entidades;
 
-import java.util.List;
+import java.util.*;
 
 public class Cidade {
     private String nome;
-    private List<Bairro> bairros;
+    private ArrayList<Bairro> bairros = new ArrayList<>();
 
-    public Cidade(String nome, List<Bairro> bairros) {
+    public Cidade(String nome) {
         this.nome = nome;
-        this.bairros = bairros;
     }
 
     public String getNome() {
         return this.nome;
     }
 
-    public List<Bairro> getBairros() {
+    public ArrayList<Bairro> getBairros() {
         return this.bairros;
+    }
+
+    public void addBairro(Bairro b){
+        bairros.add(b);
+    }
+
+    public void removeBairro(Bairro b){
+        bairros.remove(b);
     }
 
 }

@@ -30,7 +30,6 @@ public class Bairro {
     public Ponto getCentro(){
         int x = ((int)limites.getPInfEsq().getX() + (int)limites.getPSupDir().getX())/2;
         int y = ((int)limites.getPInfEsq().getY() + (int)limites.getPSupDir().getY())/2;
-        Ponto centro = new Ponto(x,y);
-        return centro;
+        return new Ponto(x,y);
     }
 }
