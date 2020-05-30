@@ -8,11 +8,13 @@ public class Bairro {
     private String nome;
     private Area limites;
     private int custoBasico;
+    private String cidade;
 
-    public Bairro(String nome, Area limites, int custoBasico){
+    public Bairro(String nome, Area limites, int custoBasico, String cidade){
         this.nome = nome;
         this.limites = limites;
         this.custoBasico = custoBasico;
+        this.cidade = cidade;
     }
 
     public String getNome(){
@@ -25,6 +27,10 @@ public class Bairro {
 
     public int getCustoBasico(){
         return custoBasico;
+    }
+
+    public String geCidade(){
+        return cidade;
     }
 
     public Ponto getCentro(){

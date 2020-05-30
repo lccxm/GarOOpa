@@ -32,5 +32,11 @@ public class RepositorioDeBairros {
             //Stream<RepositorioDeCidades> stream = cidades.stream();
             //stream.filter(cidade -> cidade.)
         }
+        pushBairros2Cidades();
+
+    }
+
+    private void pushBairros2Cidades(){
+        for (Bairro)
     }
 }
