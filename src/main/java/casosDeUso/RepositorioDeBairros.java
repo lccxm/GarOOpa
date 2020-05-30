@@ -24,14 +24,10 @@ public class RepositorioDeBairros {
             String nome = data[0];
             String cidade = data[1];
             int custoBasico = Integer.parseInt(data[2]);
-            //limites (p1.x, p1.y, p2.x, p2.y)
             Ponto pInfEsq = new Ponto(Integer.parseInt(data[3]), Integer.parseInt(data[4]));
             Ponto pSupDir = new Ponto(Integer.parseInt(data[5]), Integer.parseInt(data[6]));
             Area limites = new Area(pInfEsq, pSupDir);
             bairros.add(new Bairro(nome, limites, custoBasico, cidade));
-            //List<RepositorioDeCidades> cidades = RepositorioDeCidades.getCidades();
-            //Stream<RepositorioDeCidades> stream = cidades.stream();
-            //stream.filter(cidade -> cidade.)
         }
         pushBairros2Cidades();
 
