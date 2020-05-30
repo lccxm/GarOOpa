@@ -30,6 +30,7 @@ public class PrecoViagem {
 
         Roteiro roteiro = new Roteiro(poa,b1,b3);
         double preco = calculaPreco(roteiro);
+        System.out.println(preco);
 
 
     }
@@ -42,7 +43,10 @@ public class PrecoViagem {
         Reta trajeto = new Reta(centroOrig, centroDest);
         // checar com quais bairros a reta intersecta
         for(int i = 0; i < r.getCidade().getBairros().size(); i++){
-            System.out.println(r.getCidade().getBairroByIndex(i));
+            Cohen c = new Cohen(r.getCidade().getBairroByIndex(i).getLimites(),trajeto);
+            if(c.cohenSutherlandClip() == SituacaoReta.INTERSECTA){
+                preco += r.getCidade().getBairroByIndex(i).getCustoBasico();
+            }
         }
         return preco;
     }
