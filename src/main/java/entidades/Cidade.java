@@ -26,4 +26,8 @@ public class Cidade {
         bairros.remove(b);
     }
 
+    public Bairro getBairroByIndex(int index){
+        return bairros.get(index);
+    }
+
 }
