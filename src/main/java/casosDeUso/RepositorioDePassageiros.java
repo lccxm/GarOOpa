@@ -1,3 +1,8 @@
+package casosDeUso;
+
+import casosDeUso.GetRawData;
+import entidades.Passageiro;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +24,7 @@ public class RepositorioDePassageiros {
             String nome = data[1];
             int somatorioAval = Integer.parseInt(data[2]);
             int qtdAval = Integer.parseInt(data[3]);
-            passageiros.add(new Passageiro(cpf, nome, somatorioAval, qtdAval);
+            passageiros.add(new Passageiro(cpf, nome, somatorioAval, qtdAval));
         }
     }
 }
