@@ -33,11 +33,10 @@ public class PrecoViagem {
 //
 //    }
 
-    public static double calculaPreco(Roteiro r){
+    public static double calculaPreco(Roteiro r, Motorista m){
         double preco = 0;
         Ponto centroOrig = r.getBairroOrigem().getCentro();
         Ponto centroDest = r.getBairroDestino().getCentro();
-
         Reta trajeto = new Reta(centroOrig, centroDest);
         // checar com quais bairros a reta intersecta
         for(int i = 0; i < r.getCidade().getBairros().size(); i++){
@@ -46,10 +45,19 @@ public class PrecoViagem {
                 preco += r.getCidade().getBairroByIndex(i).getCustoBasico();
             }
         }
+        preco = calculaPrecoAdicional(r,m,preco);
         return preco;
     }
 
-    public double calculaPrecoAdicional(Motorista motorista ,int precoBasico){
-
+    public static double calculaPrecoAdicional(Roteiro r, Motorista m, double preco){
+        if(m.getVeiculo().getTipo() == TipoVeiculo.SIMPLES){
+            return preco;
+        }else if(m.getVeiculo().getTipo() == TipoVeiculo.NORMAL){
+            preco += (preco * 0.1);
+        }else{
+            preco += (preco * 0.1);
+            preco +=  preco * ((double)(r.getBairrosInterseccionados().size() * 2)/100);
+        }
+        return preco;
     }
 }

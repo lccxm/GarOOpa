@@ -8,7 +8,7 @@ public class Veiculo {
     private TipoVeiculo tipo;
     private boolean bagageiroG;
 
-    public Veiculo(String placa, String marca, String cor, TipoVeiculo tipo ){
+    public Veiculo(String placa, String marca, String cor, TipoVeiculo tipo){
         this.placa = placa;
         this.marca = marca;
         this.cor = cor;
