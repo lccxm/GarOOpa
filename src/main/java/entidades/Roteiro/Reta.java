@@ -28,13 +28,6 @@ public class Reta {
     }
 
 
-    @Override
-    public String toString() {
-        return "{" +
-            " p1='" + p1 + "'" +
-            ", p2='" + p2 + "'" +
-            "}";
-    }
 
 }
 
