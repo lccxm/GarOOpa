@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidades.Motorista;
+import entidades.TipoVeiculo;
 import entidades.Veiculo;
 
 public class RepositorioDeMotoristas {
@@ -28,9 +29,9 @@ public class RepositorioDeMotoristas {
             String veiculoPlaca = data[5];
             String veiculoMarca= data[6];
             String veiculoCor = data[7];
-            int tipo = Integer.parseInt(data[8]); //add  no construtor
+            TipoVeiculo tipo = TipoVeiculo.valueOf(data[8]);
             boolean bagageiroG = Integer.parseInt(data[9]) == 1; // add no construtor
-            Veiculo v = new Veiculo(veiculoPlaca, veiculoMarca, veiculoCor); 
+            Veiculo v = new Veiculo(veiculoPlaca, veiculoMarca, veiculoCor, tipo); 
             motoristas.add(new Motorista(cpf, nome, v));
         }
     }

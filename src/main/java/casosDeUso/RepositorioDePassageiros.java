@@ -1,13 +1,11 @@
 package casosDeUso;
 
-import casosDeUso.GetRawData;
 import entidades.Passageiro;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidades.Passageiro;
 
 public class RepositorioDePassageiros {
     private List<Passageiro> passageiros;
