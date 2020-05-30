@@ -12,7 +12,7 @@ public class GetRawData {
         System.out.println(lst.get(0)[2]);
     }
     public static List<String[]> fromCSV(String fileName) throws FileNotFoundException {
-        String pathPrefix = "";
+        String pathPrefix = "../resources/";
         fileName = pathPrefix + fileName;
         List<String[]> lst = new LinkedList<>();
         File f = new File(fileName);
