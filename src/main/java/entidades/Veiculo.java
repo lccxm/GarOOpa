@@ -13,6 +13,7 @@ public class Veiculo {
         this.marca = marca;
         this.cor = cor;
         this.tipo = tipo;
+        this.bagageiroG = false;
     }
 
     public String getPlaca(){
@@ -29,5 +30,10 @@ public class Veiculo {
 
     public TipoVeiculo getTipo(){
         return tipo;
+    }
+
+    public void setBagageiroG(boolean b){
+        if (tipo.equals(TipoVeiculo.LUXO) && b)
+            bagageiroG = true;
     }
 }
