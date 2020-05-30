@@ -1,23 +1,24 @@
+package casosDeUso;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import entidades.Bairro;
 import entidades.Roteiro.Ponto;
 import entidades.Roteiro.Area;
+import entidades.Roteiro.IllegalArgumentException;
 
 public class RepositorioDeBairros {
     private List<Bairro> bairros;
 
-    public RepositorioDeBairros() throws FileNotFoundException {
+    public RepositorioDeBairros() throws FileNotFoundException, IllegalArgumentException {
         this.bairros = new ArrayList<>();
         carregaBairros();
     }
 
-    
-    public void carregaBairros() throws FileNotFoundException{
-        List<String[]> lst = GetRawData.fromCSV("bairros.dat");
+    public void carregaBairros() throws FileNotFoundException, IllegalArgumentException {
+        List<String[]> lst = GetRawData.fromCSV("fileName");
         for (String[] data: lst){
             String nome = data[0];
             String cidade = data[1];
