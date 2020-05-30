@@ -24,7 +24,6 @@ public class Cohen {
         Area aTest = new Area(p3, p4);
         Cohen c = new Cohen(aTest, rTest);
         System.out.println(c.cohenSutherlandClip());
->>>>>>> bf1f3037da49f87c1266b0b620996f218a78aad1
     }
 
     public static int INSIDE = 0;  //0000
