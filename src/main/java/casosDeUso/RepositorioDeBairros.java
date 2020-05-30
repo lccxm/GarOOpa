@@ -28,7 +28,7 @@ public class RepositorioDeBairros {
             Ponto pInfEsq = new Ponto(Integer.parseInt(data[3]), Integer.parseInt(data[4]));
             Ponto pSupDir = new Ponto(Integer.parseInt(data[5]), Integer.parseInt(data[6]));
             Area limites = new Area(pInfEsq, pSupDir);
-            bairros.add(new Bairro(nome, limites, custoBasico));
+            bairros.add(new Bairro(nome, limites, custoBasico, cidade));
             //List<RepositorioDeCidades> cidades = RepositorioDeCidades.getCidades();
             //Stream<RepositorioDeCidades> stream = cidades.stream();
             //stream.filter(cidade -> cidade.)
