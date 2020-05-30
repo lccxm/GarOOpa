@@ -2,6 +2,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import entidades.Motorista;
+import entidades.Veiculo;
+
 public class RepositorioDeMotoristas {
     private List<Motorista> motoristas;
 

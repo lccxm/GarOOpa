@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import entidades.Bairro;
+import entidades.Roteiro.Ponto;
+import entidades.Roteiro.Area;
+
 public class RepositorioDeBairros {
     private List<Bairro> bairros;
 
@@ -23,9 +27,9 @@ public class RepositorioDeBairros {
             Ponto pSupDir = new Ponto(Integer.parseInt(data[5]), Integer.parseInt(data[6]));
             Area limites = new Area(pInfEsq, pSupDir);
             bairros.add(new Bairro(nome, limites, custoBasico));
-            List<RepositorioDeCidades> cidades = RepositorioDeCidades.getCidades();
-            Stream<RepositorioDeCidades> stream = cidades.stream();
-            stream.filter(cidade -> cidade.)
+            //List<RepositorioDeCidades> cidades = RepositorioDeCidades.getCidades();
+            //Stream<RepositorioDeCidades> stream = cidades.stream();
+            //stream.filter(cidade -> cidade.)
         }
     }
 }

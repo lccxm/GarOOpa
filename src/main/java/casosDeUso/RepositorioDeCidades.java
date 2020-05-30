@@ -2,6 +2,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import entidades.Cidade;
+
 public class RepositorioDeCidades {
     private static List<Cidade> cidades;
 
