@@ -27,14 +27,14 @@ public class RepositorioDeBairros {
             Ponto pInfEsq = new Ponto(Integer.parseInt(data[3]), Integer.parseInt(data[4]));
             Ponto pSupDir = new Ponto(Integer.parseInt(data[5]), Integer.parseInt(data[6]));
             Area limites = new Area(pInfEsq, pSupDir);
-            bairros.add(new Bairro(nome, limites, custoBasico, cidade));
+            bairros.add(new Bairro(nome, limites, custoBasico));
         }
         pushBairros2Cidades();
 
     }
 
     private void pushBairros2Cidades(){
-        List<Cidade> cidades = RepositorioDeCidades.getCidades()
+        List<Cidade> cidades = RepositorioDeCidades.getCidades();
         for (Bairro b: bairros){
             for (Cidade cidade : cidades){
                 if (b.geCidade().equals(cidade.getNome()))
