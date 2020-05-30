@@ -20,14 +20,15 @@ public class PrecoViagem {
 //        Ponto p6 = new Ponto(8,1);
 //        Area Ab3 = new Area(p5,p6);
 //        Bairro b3 = new Bairro("bairro 3",Ab1,4);
-//
+//        Veiculo veiculo = new Veiculo("12345","ferrarri", "vermelho", TipoVeiculo.LUXO);
+//        Motorista motorista = new Motorista("25","Cleiton", veiculo);
 //        poa.addBairro(b1);
 //        poa.addBairro(b2);
 //        poa.addBairro(b3);
 //
 //
 //        Roteiro roteiro = new Roteiro(poa,b1,b3);
-//        double preco = calculaPreco(roteiro);
+//        double preco = calculaPreco(roteiro,motorista);
 //        System.out.println(preco);
 //
 //
