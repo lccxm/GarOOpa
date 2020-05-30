@@ -14,6 +14,8 @@
 * Repositórios
   * RepositórioDeMotoristas
   * RepositórioDeClientes
+  * RepositórioDeCidades
+  * RepositórioDeBairros
 * Serviços
     * ServicosDeSelecaoDeMotorista
     * ServicosDeSeleçãoDeRota
