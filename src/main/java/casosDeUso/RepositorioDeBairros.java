@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidades.Bairro;
+import entidades.Cidade;
 import entidades.Roteiro.Ponto;
 import entidades.Roteiro.Area;
 import entidades.Roteiro.IllegalArgumentException;
@@ -37,6 +38,12 @@ public class RepositorioDeBairros {
     }
 
     private void pushBairros2Cidades(){
-        for (Bairro)
+        List<Cidade> cidades = RepositorioDeCidades.getCidades()
+        for (Bairro b: bairros){
+            for (Cidade cidade : cidades){
+                if (b.geCidade().equals(cidade.getNome()))
+                    cidade.addBairro(b);
+            }
+        }
     }
 }
