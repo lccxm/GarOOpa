@@ -2,9 +2,7 @@ package entidades.Roteiro;
 
 import entidades.Bairro;
 import entidades.Cidade;
-
 import java.util.ArrayList;
-
 
 public class Roteiro {
     private Cidade cidade;

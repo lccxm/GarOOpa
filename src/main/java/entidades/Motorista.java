@@ -51,9 +51,11 @@ public class Motorista {
     }
 
     public void atualizaNota(int avaliacao){
-        somaAvaliacoes += avaliacao;
-        quantAvaliacoes += 1;
-        nota = (int)(somaAvaliacoes/quantAvaliacoes);
+        if(avaliacao >= 0 && avaliacao <= 10) {
+            somaAvaliacoes += avaliacao;
+            quantAvaliacoes += 1;
+            nota = (int) (somaAvaliacoes / quantAvaliacoes);
+        }
     }
 
     public int getNota(){
