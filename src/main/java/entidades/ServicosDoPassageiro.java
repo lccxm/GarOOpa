@@ -64,4 +64,19 @@ public class ServicosDoPassageiro {
     }
 
 
+    @Override
+    public String toString() {
+        return "{" +
+            " formaPgto='" + formaPgto + "'" +
+            ", categoria='" + categoria + "'" +
+            ", passageiro='" + passageiro + "'" +
+            ", bairroOrigem='" + bairroOrigem + "'" +
+            ", bairroDestino='" + bairroDestino + "'" +
+            ", motorista='" + motorista + "'" +
+            ", viagem='" + viagem + "'" +
+            ", avalMotorista='" + avalMotorista + "'" +
+            "}";
+    }
+
+
 }

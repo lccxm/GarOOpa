@@ -42,4 +42,16 @@ public class ServicosDoMotorista {
     }
 
 
+    @Override
+    public String toString() {
+        return "{" +
+            " motorista='" + motorista + "'" +
+            ", nome='" + nome + "'" +
+            ", viagens='" + viagens + "'" +
+            ", viagemSelecionada='" + viagemSelecionada + "'" +
+            ", avalPassageiro='" + avalPassageiro + "'" +
+            "}";
+    }
+
+
 }
