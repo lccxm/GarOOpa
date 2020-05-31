@@ -11,7 +11,7 @@ public class DeterminacaoVeiculo {
 
     }
 
-    public List<Motorista> determinaVeiculo(Passageiro p, FormaPgto f, TipoVeiculo t) throws FileNotFoundException {
+    public static List<Motorista> determinaVeiculo(Passageiro p, FormaPgto f, TipoVeiculo t) throws FileNotFoundException {
         RepositorioDeMotoristas motoras = new RepositorioDeMotoristas();
         List<Motorista> motoristas = motoras.getMotoristas();
         List<Motorista> motoristasSelecionados = new ArrayList<Motorista>();
