@@ -58,6 +58,9 @@ public class RepositorioDeViagens {
         viagens.add(viagem);
     }
     
+    public static int size(){
+        return viagens.size();
+    }
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeViagens();
     }
