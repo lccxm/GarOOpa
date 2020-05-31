@@ -21,10 +21,11 @@ public class RepositorioDeViagens {
 
     // To DO: tirar list do contrutor de cidades (inicia vazia)
     // e inserir metodo addBairro 
-    private void carregaCidades() throws FileNotFoundException{
-        List<String[]> lst = GetRawData.fromCSV("cidades.dat");
+    private void carregaViagens() throws FileNotFoundException{
+        List<String[]> lst = GetRawData.fromCSV("viagens.dat");
         for (String[] data: lst){
-            String nome = data[0];
+            int identificador = data[0];
+            
             viagens.add(new Viagem(#######));
         }
     }

@@ -17,6 +17,10 @@ public class RepositorioDeMotoristas {
         this.motoristas = new ArrayList<>();
         carregaMotoristas();
     }
+
+    public List<Motorista> getMotoristas(){
+        return motoristas;
+    }
     // Motorista(String cpf, String nome, Veiculo veiculo){
     // colocar em Motorista outros campos (forma de pagamento???)
     // colocar oustro campos no construtor de vaiculo
