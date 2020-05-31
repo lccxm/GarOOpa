@@ -27,6 +27,13 @@ public class RepositorioDeCidades {
             cidades.add(new Cidade(nome));
         }
     }
+
+    public static Cidade getCidadeByName(String nome){
+        for (Cidade cidade : cidades)
+            if (cidade.getNome().equals(nome))
+                return cidade;
+        throw new IllegalArgumentException("Cidade nao existe");
+    }
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeCidades();
     }

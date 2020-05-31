@@ -11,11 +11,15 @@ import entidades.Roteiro.Area;
 import entidades.Roteiro.IllegalArgumentException;
 
 public class RepositorioDeBairros {
-    private List<Bairro> bairros;
+    private static List<Bairro> bairros;
 
     public RepositorioDeBairros() throws FileNotFoundException, IllegalArgumentException {
         this.bairros = new ArrayList<>();
         carregaBairros();
+    }
+
+    public static List<Bairro> getBairros() {
+        return bairros;
     }
 
     public void carregaBairros() throws FileNotFoundException, IllegalArgumentException {
@@ -44,6 +48,13 @@ public class RepositorioDeBairros {
                     System.out.println("bairro "+b+"adicionad a cidade"+c);
             }
         }
+    }
+
+    public static Bairro getBairroByName(String nome) throws IllegalArgumentException {
+        for (Bairro bairro : bairros)
+            if (bairro.getNome().equals(nome))
+                return bairro;
+        throw new IllegalArgumentException("Bairro nao cadastrado");
     }
 
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
