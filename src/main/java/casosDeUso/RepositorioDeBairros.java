@@ -41,11 +41,13 @@ public class RepositorioDeBairros {
             for (Cidade c : cidades){
                 if (b.geCidade().equals(c.getNome()))
                     c.addBairro(b);
+                    System.out.println("bairro "+b+"adicionad a cidade"+c);
             }
         }
     }
 
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
+        new RepositorioDeCidades();
         new RepositorioDeBairros();
     }
 }
