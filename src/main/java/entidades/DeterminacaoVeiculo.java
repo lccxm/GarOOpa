@@ -20,16 +20,10 @@ public class DeterminacaoVeiculo {
                 motoristasSelecionados.add(m);
             }
         }
-        if(motoristasSelecionados.isEmpty()){
-            System.out.println("errouuuu");
-        }
         motoristasSelecionados.removeIf(m -> m.getVeiculo().getTipo() != t);
-        if(motoristasSelecionados.isEmpty()){
-            System.out.println("nao vai dar nao");
-        }
         motoristasSelecionados.removeIf(m -> (m.getNota() - p.getNota()) > 4);
         if(motoristasSelecionados.isEmpty()){
-            System.out.println("deu bret");
+            throw new IllegalArgumentException("Sem mototristas disponiveis");
         }
         return motoristasSelecionados;
     }
