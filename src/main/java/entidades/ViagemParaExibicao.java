@@ -6,6 +6,10 @@ public class ViagemParaExibicao {
     private String placa;
     private String marca;
     private double custo;
+    private String data;
+    private String bairroOrigem;
+    private String bairroDestino;
+
 
     public ViagemParaExibicao(Viagem viagem){
         this.viagem = viagem;
@@ -13,6 +17,9 @@ public class ViagemParaExibicao {
         placa = motorista.getVeiculo().getPlaca();
         marca = motorista.getVeiculo().getMarca();
         custo = PrecoViagem.calculaPreco(viagem.getRoteiro(), motorista);
+        data = viagem.getDataHora().toString();
+        bairroOrigem = viagem.getRoteiro().getBairroOrigem().getNome();
+        bairroDestino= viagem.getRoteiro().getBairroDestino().getNome();
     }
 
 
@@ -36,6 +43,21 @@ public class ViagemParaExibicao {
         return this.custo;
     }
 
+
+    public String getData() {
+        return this.data;
+    }
+
+    public String getBairroOrigem() {
+        return this.bairroOrigem;
+    }
+
+    public String getBairroDestino() {
+        return this.bairroDestino;
+    }
+
+
+
     @Override
     public String toString() {
         return "{" +
@@ -44,8 +66,12 @@ public class ViagemParaExibicao {
             ", placa='" + placa + "'" +
             ", marca='" + marca + "'" +
             ", custo='" + custo + "'" +
+            ", data='" + data + "'" +
+            ", bairroOrigem='" + bairroOrigem + "'" +
+            ", bairroDestino='" + bairroDestino + "'" +
             "}";
     }
+
 
 
 

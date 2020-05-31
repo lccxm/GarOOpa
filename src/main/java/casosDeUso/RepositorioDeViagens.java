@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import entidades.Bairro;
@@ -61,6 +62,16 @@ public class RepositorioDeViagens {
     public static int size(){
         return viagens.size();
     }
+
+    public static List<Viagem> getViagensByMotorista(Motorista motorista){
+        List<Viagem> viagensSelecionadas = new LinkedList<>();
+        for (Viagem v : viagens)
+            if (v.getMotorista().getCpf().equals(motorista.getCpf()))
+                viagensSelecionadas.add(v);
+        return viagensSelecionadas;
+
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeViagens();
     }
