@@ -3,7 +3,6 @@ package entidades;
 import entidades.Roteiro.Roteiro;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Viagem {
     private int identificador;
@@ -26,7 +25,7 @@ public class Viagem {
         return this.identificador;
     }
 
-    public LocalTime getDataHora() {
+    public LocalDateTime getDataHora() {
         return this.dataHora;
     }
 
