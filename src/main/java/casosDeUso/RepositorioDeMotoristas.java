@@ -54,6 +54,10 @@ public class RepositorioDeMotoristas {
         throw new IllegalArgumentException("motorista nao existe");
     }
 
+    public static void add(Motorista motorista){
+        motoristas.add(motorista);
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeMotoristas();
     }

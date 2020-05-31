@@ -53,6 +53,10 @@ public class RepositorioDeViagens {
                 return viagem;
         throw new IllegalArgumentException("id inexistente");
     }
+
+    public static void add(Viagem viagem){
+        viagens.add(viagem);
+    }
     
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeViagens();

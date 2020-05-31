@@ -57,6 +57,10 @@ public class RepositorioDeBairros {
         throw new IllegalArgumentException("Bairro nao cadastrado");
     }
 
+    public static void add(Bairro bairro){
+        bairros.add(bairro);
+    }
+
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
         new RepositorioDeCidades();
         new RepositorioDeBairros();

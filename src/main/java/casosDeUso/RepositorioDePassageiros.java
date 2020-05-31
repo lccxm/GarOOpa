@@ -33,6 +33,9 @@ public class RepositorioDePassageiros {
         throw new IllegalArgumentException("passageiro nao existe");
     }
 
+    public static void add(Passageiro passageiro){
+        passageiros.add(passageiro);
+    }
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDePassageiros();
     }

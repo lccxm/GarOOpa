@@ -34,6 +34,10 @@ public class RepositorioDeCidades {
                 return cidade;
         throw new IllegalArgumentException("Cidade nao existe");
     }
+
+    public static void add(Cidade cidade){
+        cidades.add(cidade);
+    }
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeCidades();
     }
