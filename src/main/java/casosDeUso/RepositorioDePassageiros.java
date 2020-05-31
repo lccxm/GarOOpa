@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public class RepositorioDePassageiros {
-    private List<Passageiro> passageiros;
+    private static List<Passageiro> passageiros;
 
     public RepositorioDePassageiros() throws FileNotFoundException {
         this.passageiros = new ArrayList<>();
@@ -24,6 +24,13 @@ public class RepositorioDePassageiros {
             int qtdAval = Integer.parseInt(data[3]);
             passageiros.add(new Passageiro(cpf, nome, somatorioAval, qtdAval));
         }
+    }
+
+    public static Passageiro getPassageiroByCPF(String cpf){
+        for (Passageiro passageiro : passageiros)
+            if (passageiro.getCpf().equals(cpf))
+                return passageiro;
+        throw new IllegalArgumentException("passageiro nao existe");
     }
 
     public static void main(String[] args) throws FileNotFoundException {

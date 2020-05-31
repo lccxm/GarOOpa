@@ -2,17 +2,18 @@ package entidades;
 
 import entidades.Roteiro.Roteiro;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Viagem {
     private int identificador;
-    private LocalTime dataHora;
+    private LocalDateTime dataHora;
     private Roteiro roteiro;
     private Motorista motorista;
     private Passageiro passageiro;
     private double custo; 
 
-    public Viagem(int identificador, LocalTime dataHora, Roteiro roteiro, Motorista motorista, Passageiro passageiro, double custo) {
+    public Viagem(int identificador, LocalDateTime dataHora, Roteiro roteiro, Motorista motorista, Passageiro passageiro, double custo) {
         this.identificador = identificador;
         this.dataHora = dataHora;
         this.roteiro = roteiro;

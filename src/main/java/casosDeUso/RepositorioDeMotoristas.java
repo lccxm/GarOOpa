@@ -11,7 +11,7 @@ import entidades.TipoVeiculo;
 import entidades.Veiculo;
 
 public class RepositorioDeMotoristas {
-    private List<Motorista> motoristas;
+    private static List<Motorista> motoristas;
 
     public RepositorioDeMotoristas() throws FileNotFoundException {
         this.motoristas = new ArrayList<>();
@@ -46,8 +46,12 @@ public class RepositorioDeMotoristas {
         }
     }
 
-    public List<Motorista> getMotoristas(){
-        return motoristas;
+
+    public static Motorista getMotoristaByCPF(String cpf){
+        for (Motorista motorista : motoristas)
+            if (motorista.getCpf().equals(cpf))
+                return motorista;
+        throw new IllegalArgumentException("motorista nao existe");
     }
 
     public static void main(String[] args) throws FileNotFoundException {
