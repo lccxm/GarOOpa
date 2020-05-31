@@ -46,6 +46,10 @@ public class RepositorioDeMotoristas {
         }
     }
 
+    public List<Motorista> getMotoristas(){
+        return motoristas;
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeMotoristas();
     }
