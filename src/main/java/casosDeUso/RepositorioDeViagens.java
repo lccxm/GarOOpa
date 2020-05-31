@@ -12,14 +12,13 @@ import entidades.Cidade;
 import entidades.Motorista;
 import entidades.Passageiro;
 import entidades.Viagem;
-import entidades.Roteiro.Ponto;
 import entidades.Roteiro.Roteiro;
 
 public class RepositorioDeViagens {
     private static List<Viagem> viagens;
 
     
-    public RepositorioDeViagens() throws FileNotFoundException {
+    public RepositorioDeViagens() throws FileNotFoundException, entidades.Roteiro.IllegalArgumentException {
         viagens = new ArrayList<>();
         carregaViagens();
     }
@@ -72,7 +71,7 @@ public class RepositorioDeViagens {
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, entidades.Roteiro.IllegalArgumentException {
         new RepositorioDeViagens();
     }
 }
