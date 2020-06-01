@@ -32,7 +32,7 @@ public class Bairro {
         cidade = c;
     }
 
-    public String geCidade(){
+    public String getCidade(){
         return cidade;
     }
 

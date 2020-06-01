@@ -1,9 +1,11 @@
-package entidades;
+package casosDeUso.servicos;
 
 import java.util.List;
 
-import casosDeUso.RepositorioDeMotoristas;
-import casosDeUso.RepositorioDeViagens;
+import casosDeUso.repositorios.RepositorioDeMotoristas;
+import casosDeUso.repositorios.RepositorioDeViagens;
+import entidades.Motorista;
+import entidades.Viagem;
 
 public class ServicosDoMotorista {
     private Motorista motorista;

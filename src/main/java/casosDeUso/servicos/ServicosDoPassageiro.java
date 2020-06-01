@@ -1,14 +1,23 @@
-package entidades;
+package casosDeUso.servicos;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
-import casosDeUso.RepositorioDeBairros;
-import casosDeUso.RepositorioDeCidades;
-import casosDeUso.RepositorioDePassageiros;
-import casosDeUso.RepositorioDeViagens;
+import casosDeUso.politicas.DeterminacaoVeiculo;
+import casosDeUso.politicas.PrecoViagem;
+import casosDeUso.repositorios.RepositorioDeBairros;
+import casosDeUso.repositorios.RepositorioDeCidades;
+import casosDeUso.repositorios.RepositorioDePassageiros;
+import casosDeUso.repositorios.RepositorioDeViagens;
+import entidades.Bairro;
+import entidades.FormaPgto;
+import entidades.Motorista;
+import entidades.Passageiro;
+import entidades.TipoVeiculo;
+import entidades.Viagem;
+import entidades.Cidade;
 import entidades.Roteiro.IllegalArgumentException;
 import entidades.Roteiro.Roteiro;
 
@@ -44,7 +53,7 @@ public class ServicosDoPassageiro {
     private Viagem getViagem(){
         int identificador = RepositorioDeViagens.getViagens().get(RepositorioDeViagens.size()).getIdentificador()+1;
         LocalDateTime dataHora = LocalDateTime.now();
-        Cidade cidade = RepositorioDeCidades.getCidadeByName(bairroOrigem.geCidade());
+        Cidade cidade = RepositorioDeCidades.getCidadeByName(bairroOrigem.getCidade());
         Roteiro roteiro = new Roteiro(cidade, bairroOrigem, bairroDestino);
         double custo = PrecoViagem.calculaPreco(roteiro, motorista);
         return new Viagem(identificador, dataHora, roteiro, motorista, passageiro, custo);

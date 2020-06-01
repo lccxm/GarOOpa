@@ -1,4 +1,4 @@
-package casosDeUso;
+package casosDeUso.repositorios;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ public class RepositorioDeMotoristas {
     private static List<Motorista> motoristas;
 
     public RepositorioDeMotoristas() throws FileNotFoundException {
-        this.motoristas = new ArrayList<>();
+        motoristas = new ArrayList<>();
         carregaMotoristas();
     }
 
     public List<Motorista> getMotoristas(){
         return motoristas;
     }
-    // Motorista(String cpf, String nome, Veiculo veiculo){
+    // TO DO: Motorista(String cpf, String nome, Veiculo veiculo){
     // colocar em Motorista outros campos (forma de pagamento???)
     // colocar oustro campos no construtor de vaiculo
     public void carregaMotoristas() throws FileNotFoundException{

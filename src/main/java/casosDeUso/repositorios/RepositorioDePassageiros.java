@@ -1,4 +1,4 @@
-package casosDeUso;
+package casosDeUso.repositorios;
 
 import entidades.Passageiro;
 
@@ -11,7 +11,7 @@ public class RepositorioDePassageiros {
     private static List<Passageiro> passageiros;
 
     public RepositorioDePassageiros() throws FileNotFoundException {
-        this.passageiros = new ArrayList<>();
+        passageiros = new ArrayList<>();
         carregaPassageiros();
     }
 

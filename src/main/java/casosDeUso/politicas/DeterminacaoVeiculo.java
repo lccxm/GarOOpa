@@ -1,6 +1,10 @@
-package entidades;
+package casosDeUso.politicas;
 
-import casosDeUso.RepositorioDeMotoristas;
+import casosDeUso.repositorios.RepositorioDeMotoristas;
+import entidades.FormaPgto;
+import entidades.Motorista;
+import entidades.Passageiro;
+import entidades.TipoVeiculo;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

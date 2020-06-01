@@ -1,4 +1,8 @@
-package entidades;
+package casosDeUso.servicos;
+
+import casosDeUso.politicas.PrecoViagem;
+import entidades.Motorista;
+import entidades.Viagem;
 
 public class ViagemParaExibicao {
     private Viagem viagem;

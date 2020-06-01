@@ -1,4 +1,4 @@
-package casosDeUso;
+package casosDeUso.repositorios;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class RepositorioDeBairros {
     private static List<Bairro> bairros;
 
     public RepositorioDeBairros() throws FileNotFoundException, IllegalArgumentException {
-        this.bairros = new ArrayList<>();
+        bairros = new ArrayList<>();
         carregaBairros();
     }
 
@@ -43,7 +43,7 @@ public class RepositorioDeBairros {
         List<Cidade> cidades = RepositorioDeCidades.getCidades();
         for (Bairro b: bairros){
             for (Cidade c : cidades){
-                if (b.geCidade().equals(c.getNome()))
+                if (b.getCidade().equals(c.getNome()))
                     c.addBairro(b);
                     System.out.println("bairro "+b+"adicionad a cidade"+c);
             }

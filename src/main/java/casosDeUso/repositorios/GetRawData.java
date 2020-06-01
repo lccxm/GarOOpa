@@ -1,4 +1,4 @@
-package casosDeUso;
+package casosDeUso.repositorios;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,7 +1,8 @@
-package entidades;
+package casosDeUso.politicas;
 
+import entidades.Motorista;
+import entidades.TipoVeiculo;
 import entidades.Roteiro.*;
-import entidades.Roteiro.IllegalArgumentException;
 
 
 public class PrecoViagem {
