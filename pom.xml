@@ -130,7 +130,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>LuccaGustavo.apresentacao.App</mainClass> <!-- Alterar -->
+                                    <mainClass>App</mainClass> <!-- Alterar -->
                                 </transformer>
                             </transformers>
                         </configuration>

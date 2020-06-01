@@ -81,7 +81,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>LuccaGustavo.apresentacao.App</mainClass>
+                  <mainClass>App</mainClass>
                 </transformer>
               </transformers>
             </configuration>

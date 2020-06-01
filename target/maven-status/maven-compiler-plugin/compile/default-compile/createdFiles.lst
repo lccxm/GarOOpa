@@ -2,12 +2,13 @@ casosDeUso\repositorios\RepositorioDeMotoristas.class
 entidades\Roteiro\Roteiro.class
 casosDeUso\repositorios\RepositorioDeViagens.class
 casosDeUso\servicos\ViagemParaExibicao.class
+App.class
 entidades\Roteiro\Area.class
-LuccaGustavo\apresentacao\App.class
 entidades\Roteiro\Ponto.class
 casosDeUso\repositorios\GetRawData.class
 entidades\Roteiro\SituacaoReta.class
 entidades\Roteiro\Cohen.class
+casosDeUso\repositorios\Repositorios.class
 entidades\Motorista.class
 casosDeUso\politicas\PrecoViagem.class
 casosDeUso\servicos\ServicosDoMotorista.class
