@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import casosDeUso.servicos.ServicosDoPassageiro;
 import entidades.FormaPgto;
 import entidades.TipoVeiculo;
 import javafx.application.Application;
@@ -34,6 +35,8 @@ public class App extends Application {
                       tfICMS,tfISSQN,tfTotalPagar,
                       nomeMotorista, placaVeiculo, marcaVeiculo, custoCorrida, pontMotorista;
     private TextArea taCart;
+    private ComboBox<FormaPgto> cbxFormaPgto;
+    private ComboBox<TipoVeiculo> cbxTipoVeiculo;
     
     public static HBox criaCampoTexto(String label,TextField tf){
         HBox hb = new HBox();
@@ -97,13 +100,13 @@ public class App extends Application {
         topGrid.add(cpf,2,4);
 
         // Monta lista de formas de pagamento
-        ComboBox<FormaPgto> cbxFormaPgto = new ComboBox<>();
+        cbxFormaPgto = new ComboBox<>();
         cbxFormaPgto.getItems().setAll(FormaPgto.values());
         topGrid.add(cbxFormaPgto, 2, 5);
         topGrid.add(new Label("Forma de pagamento: "), 1,5);
 
         // Monta lista de tips de veiculo
-        ComboBox<TipoVeiculo> cbxTipoVeiculo = new ComboBox<>();
+        cbxTipoVeiculo = new ComboBox<>();
         cbxTipoVeiculo.getItems().setAll(TipoVeiculo.values());
         topGrid.add(cbxTipoVeiculo, 2, 6);
         topGrid.add(new Label("Tipo de veiculo: "), 1,6);
@@ -191,12 +194,12 @@ public class App extends Application {
         cartGrid.setHgap(4);
         cartGrid.setVgap(6);
         
-        taCart = new TextArea();
+    /*     taCart = new TextArea();
         taCart.setEditable(false);
-        cartGrid.add(taCart,0,0);
+        cartGrid.add(taCart,0,0); */
 
         // Adiciona campos texto
-        tfTotal = new TextField();
+/*         tfTotal = new TextField();
         cartGrid.add(criaCampoTexto("Total:", tfTotal),0,2);
         tfDesconto = new TextField();
         cartGrid.add(criaCampoTexto("Desconto:", tfDesconto),0,3);
@@ -207,7 +210,7 @@ public class App extends Application {
         tfISSQN = new TextField();
         cartGrid.add(criaCampoTexto("ISSQN:", tfISSQN),0,6);
         tfTotalPagar = new TextField();
-        cartGrid.add(criaCampoTexto("Total a pagar:", tfTotalPagar),0,7);;
+        cartGrid.add(criaCampoTexto("Total a pagar:", tfTotalPagar),0,7);; */
 
         // Adiciona os paineis da direita e da esquerda no grid básico
         grid.add(topGrid,0,2);
@@ -217,12 +220,13 @@ public class App extends Application {
         root.getChildren().add(grid);        
         
         Scene scene = new Scene(root, 800, 550);
-        primaryStage.setTitle("ACME Shopping Cart");
+        primaryStage.setTitle("Garoopa");
         primaryStage.setScene(scene);
         primaryStage.show(); 
     }
 
-    public void trataBotaoAdd(ActionEvent event){
+    public void trataBotaoBuscaMot(ActionEvent event){
+        ServicosDoPassageiro sp = new ServicosDoPassageiro(cpf.toString(), bairroOrigem.toString(), bairroDestino.toString(), cbxFormaPgto.toString(), cbxTipoVeiculo.toString());
         // Recupera produto selecionado
 //        Produto prod = cbProdutos.getSelectionModel().getSelectedItem();
         int qtdade = 0;
