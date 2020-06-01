@@ -20,7 +20,7 @@ public class RepositorioDeCidades {
 
     // To DO: tirar list do contrutor de cidades (inicia vazia)
     // e inserir metodo addBairro 
-    private void carregaCidades() throws FileNotFoundException{
+    public void carregaCidades() throws FileNotFoundException{
         List<String[]> lst = GetRawData.fromCSV("cidades.dat");
         for (String[] data: lst){
             String nome = data[0];
