@@ -1,13 +1,17 @@
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import casosDeUso.servicos.ServicosDoPassageiro;
+import casosDeUso.servicos.ViagemParaExibicao;
 import entidades.FormaPgto;
 import entidades.TipoVeiculo;
+import entidades.Roteiro.IllegalArgumentException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,43 +28,44 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
-public class App extends Application {
-    //private CadastroProduto cadProd;
-    //private Cart cart;
+public class App extends Application implements EventHandler<ActionEvent>{
+    // private CadastroProduto cadProd;
+    // private Cart cart;
 
-    //private ComboBox<Produto> cbProdutos;
+    // private ComboBox<Produto> cbProdutos;
     private TextField cpf, bairroOrigem, bairroDestino, tfTotal;
-    private TextField tfDesconto,tfTaxaEntrega,
-                      tfICMS,tfISSQN,tfTotalPagar,
-                      nomeMotorista, placaVeiculo, marcaVeiculo, custoCorrida, pontMotorista;
+    private TextField tfDesconto, tfTaxaEntrega, tfICMS, tfISSQN, tfTotalPagar, nomeMotorista, placaVeiculo,
+            marcaVeiculo, custoCorrida, pontMotorista;
     private TextArea taCart;
     private ComboBox<FormaPgto> cbxFormaPgto;
     private ComboBox<TipoVeiculo> cbxTipoVeiculo;
-    
-    public static HBox criaCampoTexto(String label,TextField tf){
+    private ViagemParaExibicao viagem;
+
+    public static HBox criaCampoTexto(String label, TextField tf) {
         HBox hb = new HBox();
         hb.setAlignment(Pos.BASELINE_LEFT);
         hb.getChildren().add(new Label(label));
         hb.getChildren().add(tf);
         return hb;
     }
-/*
-    public void atualizaCampos(){
-        tfTotal.setText("R$ "+cart.getSubTotal());
-        tfDesconto.setText("R$ "+cart.getDesconto());
-        tfTaxaEntrega.setText("R$ "+cart.getTaxaEntrega());
-        tfICMS.setText("R$ "+cart.getICMS());
-        tfISSQN.setText("R$ "+cart.getISSQN());
-        tfTotalPagar.setText("R$ "+cart.getTotalPagar());
+
+    public void atualizaCampos(){ 
+        System.out.println(viagem);
+        nomeMotorista.setText(viagem.getNomeMotorista());
+        placaVeiculo.setText(viagem.getPlaca());
+        marcaVeiculo.setText(viagem.getMarca());
+        custoCorrida.setText(String.valueOf(viagem.getCusto()));
     }
-*/
+
+    
     @Override
     public void start(Stage primaryStage) {
         // Instancia estruturas de dados
-//        cadProd = CadastroProduto.getInstance();
-//        cart = new Cart();
-
+        // cadProd = CadastroProduto.getInstance();
+        // cart = new Cart();
         // Define o grid basico
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -71,162 +76,157 @@ public class App extends Application {
         // Define o título do form
         Text tfTitulo = new Text("Garoopa");
         tfTitulo.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(tfTitulo, 0, 0, 2, 1);    
-        
+        grid.add(tfTitulo, 0, 0, 2, 1);
+
         // Define o painel de seleção de produtos
         GridPane topGrid = new GridPane();
         topGrid.setAlignment(Pos.BASELINE_LEFT);
         topGrid.setHgap(4);
         topGrid.setVgap(6);
-        
+
         // Define o título da secçao
         Label titSolicita = new Label("Dados da solicitacao: ");
         titSolicita.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
-        topGrid.add(titSolicita, 1, 1);    
+        topGrid.add(titSolicita, 1, 1);
 
-        //add campo cpf
+        // add campo cpf
         topGrid.add(new Label("CPF "), 1, 2);
         cpf = new TextField();
-        topGrid.add(cpf,2,2);
+        topGrid.add(cpf, 2, 2);
 
-        //add campo bairroOrigem
+        // add campo bairroOrigem
         topGrid.add(new Label("Bairro de origem: "), 1, 3);
         cpf = new TextField();
-        topGrid.add(cpf,2,3);
+        topGrid.add(cpf, 2, 3);
 
-        //add campo bairroDestino
+        // add campo bairroDestino
         topGrid.add(new Label("Bairro destino: "), 1, 4);
         cpf = new TextField();
-        topGrid.add(cpf,2,4);
+        topGrid.add(cpf, 2, 4);
 
         // Monta lista de formas de pagamento
         cbxFormaPgto = new ComboBox<>();
         cbxFormaPgto.getItems().setAll(FormaPgto.values());
         topGrid.add(cbxFormaPgto, 2, 5);
-        topGrid.add(new Label("Forma de pagamento: "), 1,5);
+        topGrid.add(new Label("Forma de pagamento: "), 1, 5);
 
         // Monta lista de tips de veiculo
         cbxTipoVeiculo = new ComboBox<>();
         cbxTipoVeiculo.getItems().setAll(TipoVeiculo.values());
         topGrid.add(cbxTipoVeiculo, 2, 6);
-        topGrid.add(new Label("Tipo de veiculo: "), 1,6);
+        topGrid.add(new Label("Tipo de veiculo: "), 1, 6);
 
         // botao buscar motorista
         Button btBuscarMotorista = new Button("Buscar motorista");
-//        btBuscarMotorista.setOnAction(e->this.trataBotaoAdd(e));
+        btBuscarMotorista.setOnAction(this);
         topGrid.add(btBuscarMotorista, 3, 7);
-
 
         // Define o título da secçao Dados da Viagem
         Label titViagem = new Label("Dados da viagem: ");
         titViagem.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
-        topGrid.add(titViagem, 1, 8); 
+        topGrid.add(titViagem, 1, 8);
 
-        //campo nome do mootrista
-        topGrid.add(new Label("Nome do motorista: "), 1,9);
+        // campo nome do mootrista
+        topGrid.add(new Label("Nome do motorista: "), 1, 9);
         nomeMotorista = new TextField();
-        topGrid.add(nomeMotorista,2,9);
-        
-        //campo placa
-        topGrid.add(new Label("Placa do veiculo: "), 1,10);
+        topGrid.add(nomeMotorista, 2, 9);
+
+        // campo placa
+        topGrid.add(new Label("Placa do veiculo: "), 1, 10);
         placaVeiculo = new TextField();
-        topGrid.add(placaVeiculo,2,10);
+        topGrid.add(placaVeiculo, 2, 10);
 
-        //campo marca
-        topGrid.add(new Label("Marca do veiculo: "), 1,11);
+        // campo marca
+        topGrid.add(new Label("Marca do veiculo: "), 1, 11);
         marcaVeiculo = new TextField();
-        topGrid.add(marcaVeiculo,2,11);
+        topGrid.add(marcaVeiculo, 2, 11);
 
-        //campo custo da corrida
-        topGrid.add(new Label("Custo da corrida: "), 1,12);
+        // campo custo da corrida
+        topGrid.add(new Label("Custo da corrida: "), 1, 12);
         custoCorrida = new TextField();
-        topGrid.add(custoCorrida,2,12);
+        topGrid.add(custoCorrida, 2, 12);
 
         // botao Finalizar Corrida
         Button btFinalizarCorrida = new Button("Finalizar corrida");
-//        btBuscarMotorista.setOnAction(e->this.trataBotaoAdd(e));
+        // btBuscarMotorista.setOnAction(e->this.trataBotaoAdd(e));
         topGrid.add(btFinalizarCorrida, 3, 13);
 
         // Define o título da secçao Avaliar motorista
         Label titAvalMotorista = new Label("Avaliar motorista: ");
         titAvalMotorista.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
         topGrid.add(titAvalMotorista, 1, 14);
-        
-        //campo aval motorista
-        topGrid.add(new Label("Avaliar motorista: "), 1,15);
+
+        // campo aval motorista
+        topGrid.add(new Label("Avaliar motorista: "), 1, 15);
         pontMotorista = new TextField();
-        topGrid.add(pontMotorista,2,15);
-        
+        topGrid.add(pontMotorista, 2, 15);
+
         // botao Ok (aval motorista)
         Button btOkAvalMotorista = new Button("Ok");
-        //        btBuscarMotorista.setOnAction(e->this.trataBotaoAdd(e));
-                topGrid.add(btOkAvalMotorista, 3, 16);
-                
+        // btBuscarMotorista.setOnAction(e->this.trataBotaoAdd(e));
+        topGrid.add(btOkAvalMotorista, 3, 16);
 
+        /*
+         * List<Produto> produtos = new ArrayList<>(); for(ProdutoDTO p:cadProd){
+         * produtos.add(EntidadeDTOConverter.Dto2Prod(p)); } // Monta o combo de
+         * produtos topGrid.add(new Label("Selecione um produto:"), 0, 1); cbProdutos =
+         * new ComboBox<Produto>(FXCollections.observableArrayList(produtos));
+         * cbProdutos.getSelectionModel().selectFirst(); topGrid.add(cbProdutos, 0, 2);
+         * topGrid.add(new Label("Quantidade:"), 1, 2);
+         */
 
-       /*  List<Produto> produtos = new ArrayList<>();
-        for(ProdutoDTO p:cadProd){
-            produtos.add(EntidadeDTOConverter.Dto2Prod(p));
-        }      // Monta o combo de produtos
-        topGrid.add(new Label("Selecione um produto:"), 0, 1);
-        cbProdutos = new ComboBox<Produto>(FXCollections.observableArrayList(produtos));
-        cbProdutos.getSelectionModel().selectFirst();
-        topGrid.add(cbProdutos, 0, 2);        
-        topGrid.add(new Label("Quantidade:"), 1, 2); */
-
-/*         // Botoes
-        Button btAdd = new Button("Add");
-        btAdd.setOnAction(e->this.trataBotaoAdd(e));
-        Button btRemove = new Button("Remove");
-        btRemove.setOnAction(e->this.trataBotaoRemove(e));
-        Button btCheckout = new Button("Checkout");
-        btCheckout.setOnAction(e->this.trataBotaoCheckout(e));
-        HBox hbBtn = new HBox();
-        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtn.getChildren().add(btAdd);
-        hbBtn.getChildren().add(btRemove);
-        hbBtn.getChildren().add(btCheckout);
-        topGrid.add(hbBtn, 0, 3); */
+        /*
+         * // Botoes Button btAdd = new Button("Add");
+         * btAdd.setOnAction(e->this.trataBotaoAdd(e)); Button btRemove = new
+         * Button("Remove"); btRemove.setOnAction(e->this.trataBotaoRemove(e)); Button
+         * btCheckout = new Button("Checkout");
+         * btCheckout.setOnAction(e->this.trataBotaoCheckout(e)); HBox hbBtn = new
+         * HBox(); hbBtn.setAlignment(Pos.BOTTOM_RIGHT); hbBtn.getChildren().add(btAdd);
+         * hbBtn.getChildren().add(btRemove); hbBtn.getChildren().add(btCheckout);
+         * topGrid.add(hbBtn, 0, 3);
+         */
 
         // Define a área de montagem do carrinho
         GridPane cartGrid = new GridPane();
         cartGrid.setAlignment(Pos.BASELINE_LEFT);
         cartGrid.setHgap(4);
         cartGrid.setVgap(6);
-        
-    /*     taCart = new TextArea();
-        taCart.setEditable(false);
-        cartGrid.add(taCart,0,0); */
+
+        /*
+         * taCart = new TextArea(); taCart.setEditable(false); cartGrid.add(taCart,0,0);
+         */
 
         // Adiciona campos texto
-/*         tfTotal = new TextField();
-        cartGrid.add(criaCampoTexto("Total:", tfTotal),0,2);
-        tfDesconto = new TextField();
-        cartGrid.add(criaCampoTexto("Desconto:", tfDesconto),0,3);
-        tfTaxaEntrega = new TextField();
-        cartGrid.add(criaCampoTexto("Taxa de entrega:", tfTaxaEntrega),0,4);
-        tfICMS = new TextField();
-        cartGrid.add(criaCampoTexto("ICMS:", tfICMS),0,5);
-        tfISSQN = new TextField();
-        cartGrid.add(criaCampoTexto("ISSQN:", tfISSQN),0,6);
-        tfTotalPagar = new TextField();
-        cartGrid.add(criaCampoTexto("Total a pagar:", tfTotalPagar),0,7);; */
+        /*
+         * tfTotal = new TextField(); cartGrid.add(criaCampoTexto("Total:",
+         * tfTotal),0,2); tfDesconto = new TextField();
+         * cartGrid.add(criaCampoTexto("Desconto:", tfDesconto),0,3); tfTaxaEntrega =
+         * new TextField(); cartGrid.add(criaCampoTexto("Taxa de entrega:",
+         * tfTaxaEntrega),0,4); tfICMS = new TextField();
+         * cartGrid.add(criaCampoTexto("ICMS:", tfICMS),0,5); tfISSQN = new TextField();
+         * cartGrid.add(criaCampoTexto("ISSQN:", tfISSQN),0,6); tfTotalPagar = new
+         * TextField(); cartGrid.add(criaCampoTexto("Total a pagar:",
+         * tfTotalPagar),0,7);;
+         */
 
         // Adiciona os paineis da direita e da esquerda no grid básico
-        grid.add(topGrid,0,2);
-        grid.add(cartGrid,0,3);
+        grid.add(topGrid, 0, 2);
+        grid.add(cartGrid, 0, 3);
 
         StackPane root = new StackPane();
-        root.getChildren().add(grid);        
-        
+        root.getChildren().add(grid);
+
         Scene scene = new Scene(root, 800, 550);
         primaryStage.setTitle("Garoopa");
         primaryStage.setScene(scene);
-        primaryStage.show(); 
+        primaryStage.show();
     }
 
-    public void trataBotaoBuscaMot(ActionEvent event){
+    public void trataBotaoBuscaMot(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
         ServicosDoPassageiro sp = new ServicosDoPassageiro(cpf.toString(), bairroOrigem.toString(), bairroDestino.toString(), cbxFormaPgto.toString(), cbxTipoVeiculo.toString());
+        System.out.println(sp);
+       /*  Alert numEx = new Alert(Alert.AlertType.WARNING,sp.toString());
+            numEx.showAndWait(); */
         // Recupera produto selecionado
 //        Produto prod = cbProdutos.getSelectionModel().getSelectedItem();
         int qtdade = 0;
@@ -242,7 +242,7 @@ public class App extends Application {
 //                          ", quantidade:"+tc.getQuantidade()+
 //                          ", valor item:"+tc.getValorDoItem()+
 //                          "\n");
-//        atualizaCampos();
+        atualizaCampos();
     }
 
     public void trataBotaoRemove(ActionEvent event){
@@ -265,6 +265,11 @@ public class App extends Application {
 //        atualizaCampos();
         Alert numEx = new Alert(Alert.AlertType.CONFIRMATION,"Compra efetuada!");
         numEx.showAndWait();
+    }
+
+    @Override
+    public void handle(ActionEvent e){
+        System.out.println("bhjjkjk");
     }
 
     public static void main(String args[]){
