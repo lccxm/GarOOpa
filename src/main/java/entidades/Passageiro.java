@@ -12,6 +12,7 @@ public class Passageiro {
         this.nome = nome;
         this.somatorioAval = somatorioAval;
         this.qtdAval = qtdAval;
+        atualizaNota();
     }
     public String getCpf() {
         return this.cpf;
@@ -36,6 +37,9 @@ public class Passageiro {
             qtdAval += 1;
             nota = (int) (somatorioAval / qtdAval);
         }
+    }
+    private void atualizaNota(){
+        nota = (int) (somatorioAval / qtdAval);
     }
 
     public int getNota(){

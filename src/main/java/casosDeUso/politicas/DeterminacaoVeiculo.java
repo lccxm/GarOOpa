@@ -1,6 +1,7 @@
 package casosDeUso.politicas;
 
 import casosDeUso.repositorios.RepositorioDeMotoristas;
+import casosDeUso.repositorios.RepositorioDePassageiros;
 import entidades.FormaPgto;
 import entidades.Motorista;
 import entidades.Passageiro;
@@ -11,8 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeterminacaoVeiculo {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws FileNotFoundException {
+        RepositorioDeMotoristas r = new RepositorioDeMotoristas();
+        System.out.println(r.getMotoristas());
+        RepositorioDePassageiros r1 = new RepositorioDePassageiros();
+        determinaVeiculo(RepositorioDePassageiros.getPassageiroByCPF("00011122233"),FormaPgto.Dinheiro,TipoVeiculo.LUXO);
     }
 
     public static List<Motorista> determinaVeiculo(Passageiro p, FormaPgto f, TipoVeiculo t) throws FileNotFoundException {
@@ -24,12 +28,15 @@ public class DeterminacaoVeiculo {
                 motoristasSelecionados.add(m);
             }
         }
-        System.out.println(motoristas);
         motoristasSelecionados.removeIf(m -> m.getVeiculo().getTipo() != t);
-        motoristasSelecionados.removeIf(m -> (m.getNota() - p.getNota()) > 4);
+        System.out.println(motoristasSelecionados);
+        motoristasSelecionados.removeIf(m -> ((p.getNota() - m.getNota() >= 4) || m.getNota() - p.getNota() >= 4));
+        System.out.println(motoristasSelecionados);
         if(motoristasSelecionados.isEmpty()){
             throw new IllegalArgumentException("Sem mototristas disponiveis");
         }
         return motoristasSelecionados;
     }
+
+
 }
