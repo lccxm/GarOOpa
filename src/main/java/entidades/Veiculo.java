@@ -32,8 +32,11 @@ public class Veiculo {
         return tipo;
     }
 
-    public boolean getBagageiro(){
-        return bagageiroG;
+    public int getBagageiro(){
+        if(bagageiroG){
+            return 1;
+        }else
+            return 0;
     }
 
     public void setBagageiroG(boolean b){
