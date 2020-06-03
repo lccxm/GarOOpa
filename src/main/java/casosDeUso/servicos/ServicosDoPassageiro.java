@@ -38,7 +38,11 @@ public class ServicosDoPassageiro {
         this.bairroOrigem = RepositorioDeBairros.getBairroByName(bairroOrigem);
         this.bairroDestino = RepositorioDeBairros.getBairroByName(bairroDestino);
         //FORMADEPAGAMENTO = NULL #####################################################################################################################
+        System.out.println(formaPgto.getClass());
+        System.out.println(FormaPgto.valueOf(formaPgto).getClass());
         this.formaPgto = FormaPgto.valueOf(formaPgto);
+        System.out.println(this.formaPgto.getClass());
+        System.out.println(this.formaPgto);
         this.categoria = TipoVeiculo.valueOf(categoria);
         this.motorista = buscaMotorista();
         this.viagem = getViagem();
@@ -46,6 +50,9 @@ public class ServicosDoPassageiro {
     }
 
     private Motorista buscaMotorista() throws FileNotFoundException {
+        System.out.println();
+        System.out.println(formaPgto);
+        System.out.println(formaPgto);
         List<Motorista> motoristasSelecionados = DeterminacaoVeiculo.determinaVeiculo(passageiro, formaPgto, categoria);
         //Random r = new Random();
         //int aleatorio = r.nextInt(motoristasSelecionados.size());
@@ -53,7 +60,7 @@ public class ServicosDoPassageiro {
     }
 
     private Viagem getViagem(){
-        int identificador = RepositorioDeViagens.getViagens().get(RepositorioDeViagens.size()).getIdentificador()+1;
+        int identificador = RepositorioDeViagens.getViagens().get(RepositorioDeViagens.size()-1).getIdentificador()+1;
         LocalDateTime dataHora = LocalDateTime.now();
         Cidade cidade = RepositorioDeCidades.getCidadeByName(bairroOrigem.getCidade());
         Roteiro roteiro = new Roteiro(cidade, bairroOrigem, bairroDestino);
