@@ -23,15 +23,19 @@ public class DeterminacaoVeiculo {
         List<Motorista> motoristas = motoras.getMotoristas();
         List<Motorista> motoristasSelecionados = new ArrayList<Motorista>();
         for (Motorista m: motoristas) {
-            if(m.getFormasPgto().contains(f)){
+            if(m.getFormasPgto().contains(f) && m.getVeiculo().getTipo().equals(t) && ((p.getNota() - m.getNota() <= 4) || m.getNota() - p.getNota() <= 4)){
                 motoristasSelecionados.add(m);
             }
         }
+/*         System.out.println(motoristasSelecionados);
         motoristasSelecionados.removeIf(m -> m.getVeiculo().getTipo() != t);
+        System.out.println(motoristasSelecionados);
         motoristasSelecionados.removeIf(m -> ((p.getNota() - m.getNota() >= 4) || m.getNota() - p.getNota() >= 4));
+        System.out.println(motoristasSelecionados); */
         if(motoristasSelecionados.isEmpty()){
             throw new IllegalArgumentException("Sem mototristas disponiveis");
-        }
+        } 
+        System.out.println(motoristasSelecionados);
         return motoristasSelecionados;
     }
 

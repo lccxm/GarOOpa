@@ -5,6 +5,7 @@ import entidades.Passageiro;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -19,6 +20,12 @@ public class RepositorioDePassageiros {
     public void carregaPassageiros() throws FileNotFoundException{
         List<String[]> lst = GetRawData.fromCSV("Ypassageiros.dat");
         for (String[] data: lst){
+            List<String> s = new LinkedList<>();
+            s.add(data[0]);
+            s.add(data[1]);
+            s.add(data[2]);
+            s.add(data[3]);
+            System.out.println(s);
             String cpf = data[0];
             String nome = data[1];
             int somatorioAval = Integer.parseInt(data[2]);
@@ -30,7 +37,7 @@ public class RepositorioDePassageiros {
     public static void persiste() throws IOException {
         List<String[]> l = new ArrayList<>();
         for (Passageiro p: passageiros){
-            String[] s = {p.getNome(),p.getNome(), String.valueOf(p.getSomatorioAval()), String.valueOf(p.getQtdAval())};
+            String[] s = {p.getCpf(),p.getNome(), String.valueOf(p.getSomatorioAval()), String.valueOf(p.getQtdAval())};
             for (int i=0; i<s.length; i++){
                 System.out.println(s[i]);
             }

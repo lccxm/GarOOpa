@@ -47,9 +47,8 @@ public class ServicosDoPassageiro {
 
     private Motorista buscaMotorista() throws FileNotFoundException {
         List<Motorista> motoristasSelecionados = DeterminacaoVeiculo.determinaVeiculo(passageiro, formaPgto, categoria);
-        //Random r = new Random();
-        //int aleatorio = r.nextInt(motoristasSelecionados.size());
-        return motoristasSelecionados.get(0);
+        int aleatorio = (int)(Math.random() * motoristasSelecionados.size());
+        return motoristasSelecionados.get(aleatorio);
     }
 
     public Viagem getViagem(){
@@ -72,6 +71,7 @@ public class ServicosDoPassageiro {
             this.avalMotorista = avaliacao;
         else
             throw new IllegalArgumentException("A avaliacao deve ser um inteiro entre 0 e 10.");
+        motorista.atualizaNota(avaliacao);
     }
 
 

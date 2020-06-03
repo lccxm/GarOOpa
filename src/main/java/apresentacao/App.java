@@ -67,7 +67,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException, IOException {
         Repositorios.carregaTodos();
-        Repositorios.persiste();
+        // Repositorios.persiste();
         /*
          * try { Repositorios.carregaTodos(); } catch (IllegalArgumentException e2) { //
          * TODO Auto-generated catch block e2.printStackTrace(); }
@@ -171,7 +171,14 @@ public class App extends Application implements EventHandler<ActionEvent> {
 
         // botao Finalizar Corrida
         Button btFinalizarCorrida = new Button("Finalizar corrida");
-        // btFinalizarCorrida.setOnAction(e->this.trataBotaoFinalizaCorrida(e));
+        btFinalizarCorrida.setOnAction(e -> {
+            try {
+                this.trataBotaoFinalizaCorrida(e);
+            } catch (IOException | IllegalArgumentException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         topGrid.add(btFinalizarCorrida, 3, 13);
 
         // Define o título da secçao Avaliar motorista
@@ -186,7 +193,14 @@ public class App extends Application implements EventHandler<ActionEvent> {
 
         // botao Ok (aval motorista)
         Button btOkAvalMotorista = new Button("Ok");
-        // btBuscarMotorista.setOnAction(e->this.trataBotaoAdd(e));
+        btOkAvalMotorista.setOnAction(e -> {
+            try {
+                this.trataBotaoAvaliaMotorista(e);
+            } catch (IOException | IllegalArgumentException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
         topGrid.add(btOkAvalMotorista, 3, 16);
 
         /*
@@ -270,8 +284,15 @@ public class App extends Application implements EventHandler<ActionEvent> {
         atualizaCampos();
     }
 
-    public void trataBotaoFinalizaCorrida(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
-        RepositorioDeViagens.add(sp.getViagem());               
+    public void trataBotaoFinalizaCorrida(ActionEvent event) throws IllegalArgumentException, IOException {
+        RepositorioDeViagens.add(sp.getViagem());   
+        Repositorios.persiste();            
+        atualizaCampos();
+    }
+
+    public void trataBotaoAvaliaMotorista(ActionEvent event) throws IllegalArgumentException, IOException {
+        sp.avaliarMotorista(pontMotorista.getText());
+        Repositorios.persiste();            
         atualizaCampos();
     }
 
