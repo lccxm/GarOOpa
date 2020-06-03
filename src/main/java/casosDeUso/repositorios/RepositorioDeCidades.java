@@ -38,6 +38,16 @@ public class RepositorioDeCidades {
     public static void add(Cidade cidade){
         cidades.add(cidade);
     }
+
+    public static void geraCidades() throws IOException {
+        List<String[]> l = new ArrayList<>();
+        for (Cidade c: cidades){
+            String[] s = {c.getNome()};
+            l.add(s);
+        }
+        System.out.println(l.toString());
+        Writer.toCSV("cidades.dat", l);
+    }
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeCidades();
     }

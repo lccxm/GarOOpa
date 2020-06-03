@@ -17,6 +17,7 @@ apresentacao\App.class
 entidades\TipoVeiculo.class
 entidades\FormaPgto.class
 casosDeUso\repositorios\RepositorioDeBairros.class
+casosDeUso\repositorios\Writer.class
 entidades\Bairro.class
 entidades\Roteiro\Reta.class
 entidades\Veiculo.class

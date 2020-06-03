@@ -10,6 +10,7 @@ public class GetRawData {
     public static void main(String[] args) throws FileNotFoundException {
         List<String[]> lst = GetRawData.fromCSV("a.txt");
     }
+
     public static List<String[]> fromCSV(String fileName) throws FileNotFoundException {
         String pathPrefix = "";
         fileName = pathPrefix + fileName;

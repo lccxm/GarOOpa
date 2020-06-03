@@ -1,9 +1,11 @@
 package apresentacao;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import casosDeUso.repositorios.RepositorioDeBairros;
 import casosDeUso.repositorios.Repositorios;
 import casosDeUso.servicos.ServicosDoPassageiro;
 import casosDeUso.servicos.ViagemParaExibicao;
@@ -32,7 +34,7 @@ import javafx.stage.Stage;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-public class App extends Application implements EventHandler<ActionEvent>{
+public class App extends Application implements EventHandler<ActionEvent> {
     // private CadastroProduto cadProd;
     // private Cart cart;
 
@@ -44,6 +46,7 @@ public class App extends Application implements EventHandler<ActionEvent>{
     private ComboBox<FormaPgto> cbxFormaPgto;
     private ComboBox<TipoVeiculo> cbxTipoVeiculo;
     private ViagemParaExibicao viagem;
+    private ServicosDoPassageiro sp;
 
     public static HBox criaCampoTexto(String label, TextField tf) {
         HBox hb = new HBox();
@@ -53,24 +56,22 @@ public class App extends Application implements EventHandler<ActionEvent>{
         return hb;
     }
 
-    public void atualizaCampos(){ 
+    public void atualizaCampos() {
         nomeMotorista.setText(viagem.getNomeMotorista());
         placaVeiculo.setText(viagem.getPlaca());
         marcaVeiculo.setText(viagem.getMarca());
         custoCorrida.setText(String.valueOf(viagem.getCusto()));
     }
 
-    
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
-/*         try {
-            Repositorios.carregaTodos();
-        } catch (IllegalArgumentException e2) {
-            // TODO Auto-generated catch block
-            e2.printStackTrace();
-        } */
-   /*      Repositorios r = new Repositorios();
-        r.carregaTodos(); */
+        /*
+         * try { Repositorios.carregaTodos(); } catch (IllegalArgumentException e2) { //
+         * TODO Auto-generated catch block e2.printStackTrace(); }
+         */
+        /*
+         * Repositorios r = new Repositorios(); r.carregaTodos();
+         */
         // Instancia estruturas de dados
         // cadProd = CadastroProduto.getInstance();
         // cart = new Cart();
@@ -126,15 +127,18 @@ public class App extends Application implements EventHandler<ActionEvent>{
 
         // botao buscar motorista
         Button btBuscarMotorista = new Button("Buscar motorista");
-        btBuscarMotorista.setOnAction(e-> {
+        btBuscarMotorista.setOnAction(e -> {
             try {
                 this.trataBotaoBuscaMot(e);
             } catch (FileNotFoundException | IllegalArgumentException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
             }
         });
-        //btBuscarMotorista.setOnAction(this);
+        // btBuscarMotorista.setOnAction(this);
         topGrid.add(btBuscarMotorista, 3, 7);
 
         // Define o título da secçao Dados da Viagem
@@ -164,7 +168,7 @@ public class App extends Application implements EventHandler<ActionEvent>{
 
         // botao Finalizar Corrida
         Button btFinalizarCorrida = new Button("Finalizar corrida");
-        // btBuscarMotorista.setOnAction(e->this.trataBotaoAdd(e));
+        // btFinalizarCorrida.setOnAction(e->this.trataBotaoFinalizaCorrida(e));
         topGrid.add(btFinalizarCorrida, 3, 13);
 
         // Define o título da secçao Avaliar motorista
@@ -238,10 +242,33 @@ public class App extends Application implements EventHandler<ActionEvent>{
         primaryStage.show();
     }
 
-    public void trataBotaoBuscaMot(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
-        ServicosDoPassageiro sp = null;
+    public void trataBotaoBuscaMot(ActionEvent event) throws IllegalArgumentException, IOException {
+        sp = null;
         sp = new ServicosDoPassageiro(cpf.getText(), bairroOrigem.getText(), bairroDestino.getText(), 
                                 cbxFormaPgto.getSelectionModel().getSelectedItem().toString(), cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString());
+        viagem = new ViagemParaExibicao(sp.getViagem());
+        RepositorioDeBairros.geraBairros();
+       /*  Alert numEx = new Alert(Alert.AlertType.WARNING,sp.toString());
+            numEx.showAndWait(); */
+        // Recupera produto selecionado
+//        Produto prod = cbProdutos.getSelectionModel().getSelectedItem();
+        int qtdade = 0;
+ /*        try{
+            qtdade = Integer.parseInt(tfQtdade.getText());
+        }catch(NumberFormatException e){
+            Alert numEx = new Alert(Alert.AlertType.WARNING,"Quantidade inválida");
+            numEx.showAndWait();
+        } */
+        // Cadastra o novo item e exibe
+//        ItemCart tc = cart.addItem(prod.getCodigo(), qtdade);
+//        taCart.appendText("Produto: "+tc.getProduto()+
+//                          ", quantidade:"+tc.getQuantidade()+
+//                          ", valor item:"+tc.getValorDoItem()+
+//                          "\n");
+        atualizaCampos();
+    }
+
+    public void trataBotaoFinalizaCorrida(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
        /*  Alert numEx = new Alert(Alert.AlertType.WARNING,sp.toString());
             numEx.showAndWait(); */
         // Recupera produto selecionado
