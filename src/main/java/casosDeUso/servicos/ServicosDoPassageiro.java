@@ -54,6 +54,7 @@ public class ServicosDoPassageiro {
         this.passageiro = RepositorioDePassageiros.getPassageiroByCPF(cpfPassageiro);
         this.bairroOrigem = RepositorioDeBairros.getBairroByName(bairroOrigem);
         this.bairroDestino = RepositorioDeBairros.getBairroByName(bairroDestino);
+        //FORMADEPAGAMENTO = NULL #####################################################################################################################
         this.formaPgto = FormaPgto.valueOf(formaPgto);
         this.categoria = TipoVeiculo.valueOf(categoria);
         this.motorista = buscaMotorista();
@@ -63,10 +64,12 @@ public class ServicosDoPassageiro {
     }
 
     private Motorista buscaMotorista() throws FileNotFoundException {
+        System.out.print("aee:     ");
+        System.out.println(formaPgto);
         List<Motorista> motoristasSelecionados = DeterminacaoVeiculo.determinaVeiculo(passageiro, formaPgto, categoria);
-        Random r = new Random();
-        int aleatorio = r.nextInt(motoristasSelecionados.size());
-        return motoristasSelecionados.get(aleatorio);
+        //Random r = new Random();
+        //int aleatorio = r.nextInt(motoristasSelecionados.size());
+        return motoristasSelecionados.get(0);
     }
 
     private Viagem getViagem(){
