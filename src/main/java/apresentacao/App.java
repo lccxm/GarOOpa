@@ -1,3 +1,4 @@
+package apresentacao;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -96,13 +97,13 @@ public class App extends Application implements EventHandler<ActionEvent>{
 
         // add campo bairroOrigem
         topGrid.add(new Label("Bairro de origem: "), 1, 3);
-        cpf = new TextField();
-        topGrid.add(cpf, 2, 3);
+        bairroOrigem = new TextField();
+        topGrid.add(bairroOrigem, 2, 3);
 
         // add campo bairroDestino
         topGrid.add(new Label("Bairro destino: "), 1, 4);
-        cpf = new TextField();
-        topGrid.add(cpf, 2, 4);
+        bairroDestino = new TextField();
+        topGrid.add(bairroDestino, 2, 4);
 
         // Monta lista de formas de pagamento
         cbxFormaPgto = new ComboBox<>();
@@ -118,7 +119,15 @@ public class App extends Application implements EventHandler<ActionEvent>{
 
         // botao buscar motorista
         Button btBuscarMotorista = new Button("Buscar motorista");
-        btBuscarMotorista.setOnAction(this);
+        btBuscarMotorista.setOnAction(e-> {
+            try {
+                this.trataBotaoBuscaMot(e);
+            } catch (FileNotFoundException | IllegalArgumentException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
+        //btBuscarMotorista.setOnAction(this);
         topGrid.add(btBuscarMotorista, 3, 7);
 
         // Define o título da secçao Dados da Viagem
@@ -223,7 +232,15 @@ public class App extends Application implements EventHandler<ActionEvent>{
     }
 
     public void trataBotaoBuscaMot(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
-        ServicosDoPassageiro sp = new ServicosDoPassageiro(cpf.toString(), bairroOrigem.toString(), bairroDestino.toString(), cbxFormaPgto.toString(), cbxTipoVeiculo.toString());
+        System.out.println("bhjjkjk");
+        ServicosDoPassageiro sp = null;
+        System.out.println(cpf.getText());
+        System.out.println(bairroOrigem.getText());
+        System.out.println(bairroDestino.getText());
+        System.out.println(cbxFormaPgto.getSelectionModel().getSelectedItem().toString());
+        System.out.println(cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString());
+        sp = new ServicosDoPassageiro(cpf.getText(), bairroOrigem.getText(), bairroDestino.getText(), 
+                                cbxFormaPgto.getSelectionModel().getSelectedItem().toString(), cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString());
         System.out.println(sp);
        /*  Alert numEx = new Alert(Alert.AlertType.WARNING,sp.toString());
             numEx.showAndWait(); */

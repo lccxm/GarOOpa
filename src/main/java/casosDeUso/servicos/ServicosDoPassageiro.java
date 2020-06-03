@@ -33,6 +33,7 @@ public class ServicosDoPassageiro {
 
     public ServicosDoPassageiro(String cpfPassageiro, String bairroOrigem, String bairroDestino, String formaPgto,
             String categoria) throws IllegalArgumentException, FileNotFoundException {
+                System.out.println("AAAAAAAAA");
         this.passageiro = RepositorioDePassageiros.getPassageiroByCPF(cpfPassageiro);
         this.bairroOrigem = RepositorioDeBairros.getBairroByName(bairroOrigem);
         this.bairroDestino = RepositorioDeBairros.getBairroByName(bairroDestino);
@@ -66,7 +67,7 @@ public class ServicosDoPassageiro {
         } catch (Exception e) {
             throw new IllegalArgumentException("A avaliacao deve ser número inteiro");
         } 
-        if (avaliacao>0 && avaliacao<10)
+        if (avaliacao>=0 && avaliacao<=10)
             this.avalMotorista = avaliacao;
         else
             throw new IllegalArgumentException("A avaliacao deve ser um inteiro entre 0 e 10.");

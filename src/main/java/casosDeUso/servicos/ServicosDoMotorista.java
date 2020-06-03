@@ -37,7 +37,7 @@ public class ServicosDoMotorista {
         } catch (Exception e) {
             throw new IllegalArgumentException("A avaliacao deve ser número inteiro");
         } 
-        if (avaliacao>0 && avaliacao<10)
+        if (avaliacao>=0 && avaliacao<=10)
             this.avalPassageiro = avaliacao;
         else
             throw new IllegalArgumentException("A avaliacao deve ser um inteiro entre 0 e 10.");
