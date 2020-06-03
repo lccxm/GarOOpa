@@ -22,12 +22,16 @@ public class Motorista {
     private List<FormaPgto> formasPgto;
     private int nota;
 
-    public Motorista(String cpf, String nome, Veiculo veiculo){
+    public Motorista(String cpf, String nome, Veiculo veiculo, int somaAvaliacoes, int quantAvaliacoes){
         this.cpf = cpf;
         this.nome = nome;
         this.veiculo = veiculo;
         this.formasPgto = new LinkedList<>();
+        this.somaAvaliacoes = somaAvaliacoes;
+        this.quantAvaliacoes = quantAvaliacoes;
+        atualizaNota();
     }
+
 
     public String getCpf(){
         return cpf;
@@ -56,6 +60,10 @@ public class Motorista {
             quantAvaliacoes += 1;
             nota = (int) (somaAvaliacoes / quantAvaliacoes);
         }
+    }
+
+    private void atualizaNota(){
+        nota = (int) (somaAvaliacoes / quantAvaliacoes);
     }
 
     public int getNota(){

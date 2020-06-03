@@ -18,7 +18,8 @@ public class RepositorioDeViagens {
     private static List<Viagem> viagens;
 
     
-    public RepositorioDeViagens() throws FileNotFoundException, entidades.Roteiro.IllegalArgumentException {
+    public RepositorioDeViagens() throws FileNotFoundException, IllegalArgumentException {
+        System.out.println("via");
         viagens = new ArrayList<>();
         carregaViagens();
     }
@@ -29,7 +30,7 @@ public class RepositorioDeViagens {
 
     // To DO: tirar list do contrutor de cidades (inicia vazia)
     // e inserir metodo addBairro 
-    private void carregaViagens() throws FileNotFoundException, entidades.Roteiro.IllegalArgumentException {
+    private void carregaViagens() throws FileNotFoundException, IllegalArgumentException {
         List<String[]> lst = GetRawData.fromCSV("viagens.dat");
 
         for (String[] data: lst){
@@ -71,7 +72,7 @@ public class RepositorioDeViagens {
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException, entidades.Roteiro.IllegalArgumentException {
+    public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
         new RepositorioDeViagens();
     }
 }

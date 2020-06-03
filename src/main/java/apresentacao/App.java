@@ -4,11 +4,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import casosDeUso.repositorios.Repositorios;
 import casosDeUso.servicos.ServicosDoPassageiro;
 import casosDeUso.servicos.ViagemParaExibicao;
 import entidades.FormaPgto;
 import entidades.TipoVeiculo;
-import entidades.Roteiro.IllegalArgumentException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -63,7 +63,15 @@ public class App extends Application implements EventHandler<ActionEvent>{
 
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException {
+/*         try {
+            Repositorios.carregaTodos();
+        } catch (IllegalArgumentException e2) {
+            // TODO Auto-generated catch block
+            e2.printStackTrace();
+        } */
+   /*      Repositorios r = new Repositorios();
+        r.carregaTodos(); */
         // Instancia estruturas de dados
         // cadProd = CadastroProduto.getInstance();
         // cart = new Cart();
@@ -232,13 +240,12 @@ public class App extends Application implements EventHandler<ActionEvent>{
     }
 
     public void trataBotaoBuscaMot(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
-        System.out.println("bhjjkjk");
         ServicosDoPassageiro sp = null;
-        System.out.println(cpf.getText());
+/*         System.out.println(cpf.getText());
         System.out.println(bairroOrigem.getText());
         System.out.println(bairroDestino.getText());
         System.out.println(cbxFormaPgto.getSelectionModel().getSelectedItem().toString());
-        System.out.println(cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString());
+        System.out.println(cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString()); */
         sp = new ServicosDoPassageiro(cpf.getText(), bairroOrigem.getText(), bairroDestino.getText(), 
                                 cbxFormaPgto.getSelectionModel().getSelectedItem().toString(), cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString());
         System.out.println(sp);
@@ -289,7 +296,7 @@ public class App extends Application implements EventHandler<ActionEvent>{
         System.out.println("bhjjkjk");
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) throws FileNotFoundException, IllegalArgumentException {
         launch(args);
     }
 }

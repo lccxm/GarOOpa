@@ -8,12 +8,12 @@ import entidades.Bairro;
 import entidades.Cidade;
 import entidades.Roteiro.Ponto;
 import entidades.Roteiro.Area;
-import entidades.Roteiro.IllegalArgumentException;
 
 public class RepositorioDeBairros {
     private static List<Bairro> bairros;
 
     public RepositorioDeBairros() throws FileNotFoundException, IllegalArgumentException {
+        System.out.println("bairro");
         bairros = new ArrayList<>();
         carregaBairros();
     }

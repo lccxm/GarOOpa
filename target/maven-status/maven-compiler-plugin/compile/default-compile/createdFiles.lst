@@ -13,7 +13,6 @@ casosDeUso\politicas\PrecoViagem.class
 casosDeUso\servicos\ServicosDoMotorista.class
 casosDeUso\repositorios\RepositorioDeCidades.class
 entidades\Cidade.class
-entidades\Roteiro\IllegalArgumentException.class
 apresentacao\App.class
 entidades\TipoVeiculo.class
 entidades\FormaPgto.class

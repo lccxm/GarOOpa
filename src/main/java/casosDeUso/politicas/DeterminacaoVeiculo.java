@@ -24,6 +24,7 @@ public class DeterminacaoVeiculo {
                 motoristasSelecionados.add(m);
             }
         }
+        System.out.println(motoristas);
         motoristasSelecionados.removeIf(m -> m.getVeiculo().getTipo() != t);
         motoristasSelecionados.removeIf(m -> (m.getNota() - p.getNota()) > 4);
         if(motoristasSelecionados.isEmpty()){
