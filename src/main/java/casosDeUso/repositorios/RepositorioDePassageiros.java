@@ -11,7 +11,6 @@ public class RepositorioDePassageiros {
     private static List<Passageiro> passageiros;
 
     public RepositorioDePassageiros() throws FileNotFoundException {
-        System.out.println("pas");
         passageiros = new ArrayList<>();
         carregaPassageiros();
     }

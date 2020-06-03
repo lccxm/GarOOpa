@@ -33,24 +33,7 @@ public class ServicosDoPassageiro {
 
     public ServicosDoPassageiro(String cpfPassageiro, String bairroOrigem, String bairroDestino, String formaPgto,
             String categoria) throws IllegalArgumentException, FileNotFoundException {
-/*                 System.out.println("AAAAAAAAA");
-                System.out.println(cpfPassageiro);
-                System.out.println(bairroOrigem);
-                System.out.println(bairroDestino);
-                System.out.println(formaPgto);
-                System.out.println(categoria);
-                System.out.println();
-                System.out.println();
-                System.out.println();
-                System.out.println();
-                System.out.println(); */
         new Repositorios().carregaTodos();
-        System.out.println(RepositorioDePassageiros.getPassageiroByCPF(cpfPassageiro));
-        System.out.println(RepositorioDeBairros.getBairroByName(bairroOrigem));
-        System.out.println(RepositorioDeBairros.getBairroByName(bairroDestino));
-        System.out.println(FormaPgto.valueOf(formaPgto));
-        System.out.println(TipoVeiculo.valueOf(categoria));
-        System.out.println(buscaMotorista());
         this.passageiro = RepositorioDePassageiros.getPassageiroByCPF(cpfPassageiro);
         this.bairroOrigem = RepositorioDeBairros.getBairroByName(bairroOrigem);
         this.bairroDestino = RepositorioDeBairros.getBairroByName(bairroDestino);
@@ -60,12 +43,9 @@ public class ServicosDoPassageiro {
         this.motorista = buscaMotorista();
         this.viagem = getViagem();
         this.avalMotorista = 8;
-        System.out.println(this);
     }
 
     private Motorista buscaMotorista() throws FileNotFoundException {
-        System.out.print("aee:     ");
-        System.out.println(formaPgto);
         List<Motorista> motoristasSelecionados = DeterminacaoVeiculo.determinaVeiculo(passageiro, formaPgto, categoria);
         //Random r = new Random();
         //int aleatorio = r.nextInt(motoristasSelecionados.size());

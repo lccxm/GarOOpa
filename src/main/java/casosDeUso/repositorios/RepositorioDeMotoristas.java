@@ -14,7 +14,6 @@ public class RepositorioDeMotoristas {
     private static List<Motorista> motoristas;
 
     public RepositorioDeMotoristas() throws FileNotFoundException {
-        System.out.println("moto");
         motoristas = new ArrayList<>();
         carregaMotoristas();
     }
@@ -35,10 +34,8 @@ public class RepositorioDeMotoristas {
             String[] aFormaPgto = data[4].split("_");
             List<FormaPgto> formasPgto = new LinkedList<>();
             for (String text: aFormaPgto){
-                System.out.println(FormaPgto.valueOf(text));
                 formasPgto.add(FormaPgto.valueOf(text));
             }
-            System.out.println(formasPgto);
             String veiculoPlaca = data[5];
             String veiculoMarca= data[6];
             String veiculoCor = data[7];

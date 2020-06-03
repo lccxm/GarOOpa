@@ -10,7 +10,6 @@ public class Repositorios {
     }
 
     public void carregaTodos() throws FileNotFoundException, IllegalArgumentException {
-        System.out.println("carr");
         new RepositorioDePassageiros();
         new RepositorioDeMotoristas();
         new RepositorioDeCidades();
@@ -19,7 +18,6 @@ public class Repositorios {
     }
 
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
-        System.out.println("aa");
         Repositorios r = new Repositorios();
         r.carregaTodos();
     }

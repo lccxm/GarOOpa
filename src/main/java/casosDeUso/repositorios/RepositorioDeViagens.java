@@ -19,7 +19,6 @@ public class RepositorioDeViagens {
 
     
     public RepositorioDeViagens() throws FileNotFoundException, IllegalArgumentException {
-        System.out.println("via");
         viagens = new ArrayList<>();
         carregaViagens();
     }

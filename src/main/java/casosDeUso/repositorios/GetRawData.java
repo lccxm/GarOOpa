@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class GetRawData {
     public static void main(String[] args) throws FileNotFoundException {
         List<String[]> lst = GetRawData.fromCSV("a.txt");
-        System.out.println(lst.get(0)[2]);
     }
     public static List<String[]> fromCSV(String fileName) throws FileNotFoundException {
         String pathPrefix = "";

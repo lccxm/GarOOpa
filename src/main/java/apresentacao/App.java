@@ -54,7 +54,6 @@ public class App extends Application implements EventHandler<ActionEvent>{
     }
 
     public void atualizaCampos(){ 
-        System.out.println(viagem);
         nomeMotorista.setText(viagem.getNomeMotorista());
         placaVeiculo.setText(viagem.getPlaca());
         marcaVeiculo.setText(viagem.getMarca());
@@ -241,14 +240,8 @@ public class App extends Application implements EventHandler<ActionEvent>{
 
     public void trataBotaoBuscaMot(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
         ServicosDoPassageiro sp = null;
-/*         System.out.println(cpf.getText());
-        System.out.println(bairroOrigem.getText());
-        System.out.println(bairroDestino.getText());
-        System.out.println(cbxFormaPgto.getSelectionModel().getSelectedItem().toString());
-        System.out.println(cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString()); */
         sp = new ServicosDoPassageiro(cpf.getText(), bairroOrigem.getText(), bairroDestino.getText(), 
                                 cbxFormaPgto.getSelectionModel().getSelectedItem().toString(), cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString());
-        System.out.println(sp);
        /*  Alert numEx = new Alert(Alert.AlertType.WARNING,sp.toString());
             numEx.showAndWait(); */
         // Recupera produto selecionado
@@ -293,7 +286,6 @@ public class App extends Application implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent e){
-        System.out.println("bhjjkjk");
     }
 
     public static void main(String args[]) throws FileNotFoundException, IllegalArgumentException {

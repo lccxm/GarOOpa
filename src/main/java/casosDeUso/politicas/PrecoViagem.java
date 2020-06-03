@@ -30,7 +30,6 @@ public class PrecoViagem {
 //
 //        Roteiro roteiro = new Roteiro(poa,b1,b3);
 //        double preco = calculaPreco(roteiro,motorista);
-//        System.out.println(preco);
 //
 //
 //    }

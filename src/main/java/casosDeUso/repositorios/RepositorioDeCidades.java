@@ -10,7 +10,6 @@ public class RepositorioDeCidades {
     private static List<Cidade> cidades;
 
     public RepositorioDeCidades() throws FileNotFoundException {
-        System.out.println("cidade");
         cidades = new ArrayList<>();
         carregaCidades();
     }

@@ -9,7 +9,6 @@ public class Cohen {
 //        Ponto p4 = new Ponto(4, 4);
 //        Area aTest = new Area(p3, p4);
 //        Cohen c = new Cohen(aTest, rTest);
-//        System.out.println(c.cohenSutherlandClip());
 //    }
 
     public static int INSIDE = 0;  //0000
@@ -54,8 +53,6 @@ public class Cohen {
         Ponto p2 = r.getP2();
         int code1 = computeCode(p1);
         int code2 = computeCode(p2);
-        System.out.println(code1);
-        System.out.println(code2);
         boolean accept = false;
 
         while (true) {

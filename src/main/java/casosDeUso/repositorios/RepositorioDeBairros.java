@@ -13,7 +13,6 @@ public class RepositorioDeBairros {
     private static List<Bairro> bairros;
 
     public RepositorioDeBairros() throws FileNotFoundException, IllegalArgumentException {
-        System.out.println("bairro");
         bairros = new ArrayList<>();
         carregaBairros();
     }
@@ -45,7 +44,6 @@ public class RepositorioDeBairros {
             for (Cidade c : cidades){
                 if (b.getCidade().equals(c.getNome()))
                     c.addBairro(b);
-                    System.out.println("bairro "+b+"adicionad a cidade"+c);
             }
         }
     }

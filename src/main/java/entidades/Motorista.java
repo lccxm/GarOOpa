@@ -8,9 +8,7 @@ public class Motorista {
 //        Veiculo veiculo = new Veiculo("a","b","azul", TipoVeiculo.LUXO);
 //        Motorista motorista = new Motorista("1","carlos",veiculo);
 //        motorista.atualizaNota(7);
-//        System.out.println(motorista.getNota());
 //        motorista.atualizaNota(7);
-//        System.out.println(motorista.getNota());
 //
 //    }
 
