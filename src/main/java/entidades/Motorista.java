@@ -43,6 +43,10 @@ public class Motorista {
         return veiculo;
     }
 
+    public int getQuantAvaliacoes(){
+        return quantAvaliacoes;
+    }
+
 
     public List<FormaPgto> getFormasPgto() {
         return this.formasPgto;
