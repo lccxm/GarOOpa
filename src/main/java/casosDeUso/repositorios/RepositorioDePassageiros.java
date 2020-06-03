@@ -3,6 +3,7 @@ package casosDeUso.repositorios;
 import entidades.Passageiro;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,19 @@ public class RepositorioDePassageiros {
             int qtdAval = Integer.parseInt(data[3]);
             passageiros.add(new Passageiro(cpf, nome, somatorioAval, qtdAval));
         }
+    }
+
+    public static void persistePassageiros() throws IOException {
+        List<String[]> l = new ArrayList<>();
+        for (Passageiro p: passageiros){
+            String[] s = {p.getNome(),p.getNome(), String.valueOf(p.getSomatorioAval()), String.valueOf(p.getQtdAval())};
+            for (int i=0; i<s.length; i++){
+                System.out.println(s[i]);
+            }
+            l.add(s);
+        }
+        System.out.println(l.toString());
+        Writer.toCSV("passageiros.dat", l);
     }
 
     public static Passageiro getPassageiroByCPF(String cpf){

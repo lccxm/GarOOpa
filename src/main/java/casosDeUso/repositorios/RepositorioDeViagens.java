@@ -1,6 +1,7 @@
 package casosDeUso.repositorios;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -69,6 +70,19 @@ public class RepositorioDeViagens {
                 viagensSelecionadas.add(v);
         return viagensSelecionadas;
 
+    }
+
+    public static void persisteViagem() throws IOException {
+        List<String[]> l = new ArrayList<>();
+        for (Viagem v: viagens){
+            String[] s = {String.valueOf(v.getIdentificador()), String.valueOf(v.getDataHora()), String.valueOf(v.getRoteiro()), String.valueOf(v.getMotorista()), String.valueOf(v.getCusto())};
+            for (int i=0; i<s.length; i++){
+                System.out.println(s[i]);
+            }
+            l.add(s);
+        }
+        System.out.println(l.toString());
+        Writer.toCSV("viagens.dat", l);
     }
 
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
