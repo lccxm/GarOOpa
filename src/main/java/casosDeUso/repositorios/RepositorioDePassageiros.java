@@ -17,7 +17,7 @@ public class RepositorioDePassageiros {
     }
 
     public void carregaPassageiros() throws FileNotFoundException{
-        List<String[]> lst = GetRawData.fromCSV("passageiros.dat");
+        List<String[]> lst = GetRawData.fromCSV("Ypassageiros.dat");
         for (String[] data: lst){
             String cpf = data[0];
             String nome = data[1];
@@ -27,7 +27,7 @@ public class RepositorioDePassageiros {
         }
     }
 
-    public static void persistePassageiros() throws IOException {
+    public static void persiste() throws IOException {
         List<String[]> l = new ArrayList<>();
         for (Passageiro p: passageiros){
             String[] s = {p.getNome(),p.getNome(), String.valueOf(p.getSomatorioAval()), String.valueOf(p.getQtdAval())};
@@ -37,7 +37,7 @@ public class RepositorioDePassageiros {
             l.add(s);
         }
         System.out.println(l.toString());
-        Writer.toCSV("passageiros.dat", l);
+        Writer.toCSV("YYYpassageiros.dat", l);
     }
 
     public static Passageiro getPassageiroByCPF(String cpf){

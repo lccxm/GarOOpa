@@ -31,11 +31,11 @@ public class RepositorioDeViagens {
     // To DO: tirar list do contrutor de cidades (inicia vazia)
     // e inserir metodo addBairro 
     private void carregaViagens() throws FileNotFoundException, IllegalArgumentException {
-        List<String[]> lst = GetRawData.fromCSV("viagens.dat");
+        List<String[]> lst = GetRawData.fromCSV("Yviagens.dat");
 
         for (String[] data: lst){
             int identificador = Integer.parseInt(data[0]);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss");
             LocalDateTime dateTime = LocalDateTime.parse(data[1], formatter);
             Bairro bairroOrigem = RepositorioDeBairros.getBairroByName(data[2]);
             Bairro bairroDestino = RepositorioDeBairros.getBairroByName(data[3]);
@@ -72,17 +72,17 @@ public class RepositorioDeViagens {
 
     }
 
-    public static void persisteViagem() throws IOException {
+    public static void persiste() throws IOException {
         List<String[]> l = new ArrayList<>();
         for (Viagem v: viagens){
-            String[] s = {String.valueOf(v.getIdentificador()), String.valueOf(v.getDataHora()), String.valueOf(v.getRoteiro()), String.valueOf(v.getMotorista()), String.valueOf(v.getCusto())};
+            String[] s = {String.valueOf(v.getIdentificador()), String.valueOf(v.getDataHora()), v.getRoteiro().getBairroOrigem().getNome(), v.getRoteiro().getBairroDestino().getNome(), v.getRoteiro().getCidade().getNome(), v.getMotorista().getCpf(),v.getPassageiro().getCpf(), String.valueOf(v.getCusto())};
             for (int i=0; i<s.length; i++){
                 System.out.println(s[i]);
             }
             l.add(s);
         }
         System.out.println(l.toString());
-        Writer.toCSV("viagens.dat", l);
+        Writer.toCSV("YYYYYviagens.dat", l);
     }
 
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {

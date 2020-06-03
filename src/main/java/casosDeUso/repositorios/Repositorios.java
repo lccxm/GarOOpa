@@ -1,15 +1,14 @@
 package casosDeUso.repositorios;
 
 import java.io.FileNotFoundException;
-
-
+import java.io.IOException;
 
 public class Repositorios {
 
-    public Repositorios(){
+    public Repositorios() {
     }
 
-    public void carregaTodos() throws FileNotFoundException, IllegalArgumentException {
+    public static void carregaTodos() throws FileNotFoundException, IllegalArgumentException {
         new RepositorioDePassageiros();
         new RepositorioDeMotoristas();
         new RepositorioDeCidades();
@@ -18,8 +17,15 @@ public class Repositorios {
     }
 
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
-        Repositorios r = new Repositorios();
-        r.carregaTodos();
+
+    }
+
+    public static void persiste() throws IOException {
+        RepositorioDeBairros.persiste();
+        RepositorioDeCidades.persiste();
+        RepositorioDeMotoristas.persiste();
+        RepositorioDePassageiros.persiste();
+        RepositorioDeViagens.persiste();
     }
     
 }

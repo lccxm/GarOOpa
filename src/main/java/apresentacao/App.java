@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import casosDeUso.repositorios.RepositorioDeBairros;
+import casosDeUso.repositorios.RepositorioDeViagens;
 import casosDeUso.repositorios.Repositorios;
 import casosDeUso.servicos.ServicosDoPassageiro;
 import casosDeUso.servicos.ViagemParaExibicao;
@@ -64,7 +65,9 @@ public class App extends Application implements EventHandler<ActionEvent> {
     }
 
     @Override
-    public void start(Stage primaryStage) throws FileNotFoundException {
+    public void start(Stage primaryStage) throws FileNotFoundException, IOException {
+        Repositorios.carregaTodos();
+        Repositorios.persiste();
         /*
          * try { Repositorios.carregaTodos(); } catch (IllegalArgumentException e2) { //
          * TODO Auto-generated catch block e2.printStackTrace(); }
@@ -247,7 +250,6 @@ public class App extends Application implements EventHandler<ActionEvent> {
         sp = new ServicosDoPassageiro(cpf.getText(), bairroOrigem.getText(), bairroDestino.getText(), 
                                 cbxFormaPgto.getSelectionModel().getSelectedItem().toString(), cbxTipoVeiculo.getSelectionModel().getSelectedItem().toString());
         viagem = new ViagemParaExibicao(sp.getViagem());
-        RepositorioDeBairros.geraBairros();
        /*  Alert numEx = new Alert(Alert.AlertType.WARNING,sp.toString());
             numEx.showAndWait(); */
         // Recupera produto selecionado
@@ -269,24 +271,12 @@ public class App extends Application implements EventHandler<ActionEvent> {
     }
 
     public void trataBotaoFinalizaCorrida(ActionEvent event) throws FileNotFoundException, IllegalArgumentException {
-       /*  Alert numEx = new Alert(Alert.AlertType.WARNING,sp.toString());
-            numEx.showAndWait(); */
-        // Recupera produto selecionado
-//        Produto prod = cbProdutos.getSelectionModel().getSelectedItem();
-        int qtdade = 0;
- /*        try{
-            qtdade = Integer.parseInt(tfQtdade.getText());
-        }catch(NumberFormatException e){
-            Alert numEx = new Alert(Alert.AlertType.WARNING,"Quantidade inválida");
-            numEx.showAndWait();
-        } */
-        // Cadastra o novo item e exibe
-//        ItemCart tc = cart.addItem(prod.getCodigo(), qtdade);
-//        taCart.appendText("Produto: "+tc.getProduto()+
-//                          ", quantidade:"+tc.getQuantidade()+
-//                          ", valor item:"+tc.getValorDoItem()+
-//                          "\n");
+        RepositorioDeViagens.add(sp.getViagem());               
         atualizaCampos();
+    }
+
+    public void trataBotaoGravar(ActionEvent event) throws IllegalArgumentException, IOException {
+        Repositorios.persiste();
     }
 
     public void trataBotaoRemove(ActionEvent event){

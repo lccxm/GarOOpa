@@ -22,7 +22,7 @@ public class RepositorioDeCidades {
     // To DO: tirar list do contrutor de cidades (inicia vazia)
     // e inserir metodo addBairro 
     public void carregaCidades() throws FileNotFoundException{
-        List<String[]> lst = GetRawData.fromCSV("cidades.dat");
+        List<String[]> lst = GetRawData.fromCSV("Ycidades.dat");
         for (String[] data: lst){
             String nome = data[0];
             cidades.add(new Cidade(nome));
@@ -40,14 +40,14 @@ public class RepositorioDeCidades {
         cidades.add(cidade);
     }
 
-    public static void geraCidades() throws IOException {
+    public static void persiste() throws IOException {
         List<String[]> l = new ArrayList<>();
         for (Cidade c: cidades){
             String[] s = {c.getNome()};
             l.add(s);
         }
         System.out.println(l.toString());
-        Writer.toCSV("cidades.dat", l);
+        Writer.toCSV("YYYcidades.dat", l);
     }
     public static void main(String[] args) throws FileNotFoundException {
         new RepositorioDeCidades();

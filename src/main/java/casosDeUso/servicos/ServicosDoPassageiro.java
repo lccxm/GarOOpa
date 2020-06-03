@@ -33,7 +33,7 @@ public class ServicosDoPassageiro {
 
     public ServicosDoPassageiro(String cpfPassageiro, String bairroOrigem, String bairroDestino, String formaPgto,
             String categoria) throws IllegalArgumentException, FileNotFoundException {
-        new Repositorios().carregaTodos();
+        //new Repositorios().carregaTodos();
         this.passageiro = RepositorioDePassageiros.getPassageiroByCPF(cpfPassageiro);
         this.bairroOrigem = RepositorioDeBairros.getBairroByName(bairroOrigem);
         this.bairroDestino = RepositorioDeBairros.getBairroByName(bairroDestino);

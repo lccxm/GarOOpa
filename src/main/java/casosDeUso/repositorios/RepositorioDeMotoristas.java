@@ -23,7 +23,7 @@ public class RepositorioDeMotoristas {
     // colocar em Motorista outros campos (forma de pagamento???)
     // colocar oustro campos no construtor de vaiculo
     public void carregaMotoristas() throws FileNotFoundException{
-        List<String[]> lst = GetRawData.fromCSV("motoristas.dat");
+        List<String[]> lst = GetRawData.fromCSV("Ymotoristas.dat");
         for (String[] data: lst){
             String cpf = data[0];
             String nome = data[1];
@@ -56,14 +56,17 @@ public class RepositorioDeMotoristas {
         throw new IllegalArgumentException("motorista nao existe");
     }
 
-    public static void persisteMotoristas() throws IOException {
+    public static void persiste() throws IOException {
         List<String[]> l = new ArrayList<>();
         for (Motorista m: motoristas){
-            String[] s = {m.getCpf(), m.getNome(), String.valueOf(m.getNota()), String.valueOf(m.getQuantAvaliacoes()), String.valueOf(m.getFormasPgto()), String.valueOf(m.getVeiculo().getPlaca()), String.valueOf(m.getVeiculo().getMarca()), String.valueOf(m.getVeiculo().getCor()), String.valueOf(m.getVeiculo().getTipo()), String.valueOf(m.getVeiculo().getBagageiro())};
+            String a = "";
+            for (FormaPgto f: m.getFormasPgto())
+                a += f+"_";
+            String[] s = {m.getCpf(), m.getNome(), String.valueOf(m.getNota()), String.valueOf(m.getQuantAvaliacoes()), a, String.valueOf(m.getVeiculo().getPlaca()), String.valueOf(m.getVeiculo().getMarca()), String.valueOf(m.getVeiculo().getCor()), String.valueOf(m.getVeiculo().getTipo()), String.valueOf(m.getVeiculo().getBagageiro())};
             l.add(s);
         }
         System.out.println(l.toString());
-        Writer.toCSV("motoristas.dat", l);
+        Writer.toCSV("YYmotoristas.dat", l);
     }
 
     public static void add(Motorista motorista){
