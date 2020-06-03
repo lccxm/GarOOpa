@@ -1,14 +1,12 @@
 package casosDeUso.repositorios;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import entidades.FormaPgto;
-import entidades.Motorista;
-import entidades.TipoVeiculo;
-import entidades.Veiculo;
+import entidades.*;
 
 public class RepositorioDeMotoristas {
     private static List<Motorista> motoristas;
@@ -56,6 +54,16 @@ public class RepositorioDeMotoristas {
             if (motorista.getCpf().equals(cpf))
                 return motorista;
         throw new IllegalArgumentException("motorista nao existe");
+    }
+
+    public static void persisteMotoristas() throws IOException {
+        List<String[]> l = new ArrayList<>();
+        for (Motorista m: motoristas){
+            String[] s = {m.getCpf(), m.getNome(), String.valueOf(m.getNota()), String.valueOf(m.getQuantAvaliacoes()), String.valueOf(m.getFormasPgto()), String.valueOf(m.getVeiculo().getPlaca()), String.valueOf(m.getVeiculo().getMarca()), String.valueOf(m.getVeiculo().getCor()), String.valueOf(m.getVeiculo().getTipo()), String.valueOf(m.getVeiculo().getBagageiro())};
+            l.add(s);
+        }
+        System.out.println(l.toString());
+        Writer.toCSV("motoristas.dat", l);
     }
 
     public static void add(Motorista motorista){

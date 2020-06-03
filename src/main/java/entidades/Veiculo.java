@@ -32,6 +32,10 @@ public class Veiculo {
         return tipo;
     }
 
+    public boolean getBagageiro(){
+        return bagageiroG;
+    }
+
     public void setBagageiroG(boolean b){
         if (tipo.equals(TipoVeiculo.LUXO) && b)
             bagageiroG = true;
