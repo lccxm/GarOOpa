@@ -3,7 +3,6 @@ package casosDeUso.repositorios;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import entidades.Bairro;
@@ -24,7 +23,7 @@ public class RepositorioDeBairros {
     }
 
     public void carregaBairros() throws FileNotFoundException, IllegalArgumentException {
-        List<String[]> lst = GetRawData.fromCSV("Ybairros.dat");
+        List<String[]> lst = GetRawData.fromCSV("bairros.dat");
         for (String[] data : lst) {
             String nome = data[0];
             String cidade = data[1];
@@ -43,17 +42,12 @@ public class RepositorioDeBairros {
     public static void persiste() throws IOException {
         List<String[]> l = new ArrayList<>();
         for (Bairro b: bairros){
-            System.out.println(b);
             String[] s = {b.getNome(), b.getCidade(), String.valueOf(b.getCustoBasico()), 
                 String.valueOf(b.getLimites().getPSupDir().getX()), String.valueOf(b.getLimites().getPSupDir().getY()), 
                 String.valueOf(b.getLimites().getPInfEsq().getX()), String.valueOf(b.getLimites().getPInfEsq().getY())};
-            for (int i=0; i<s.length; i++){
-                System.out.println(s[i]);
-            }
             l.add(s);
         }
-        System.out.println(l.toString());
-        Writer.toCSV("YYYYbairros.dat", l);
+        Writer.toCSV("bairros.dat", l);
     }
 
     private void pushBairros2Cidades(){
@@ -77,8 +71,5 @@ public class RepositorioDeBairros {
         bairros.add(bairro);
     }
 
-    public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
-        new RepositorioDeCidades();
-        new RepositorioDeBairros();
-    }
+
 }

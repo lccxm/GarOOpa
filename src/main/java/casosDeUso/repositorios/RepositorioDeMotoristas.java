@@ -19,11 +19,9 @@ public class RepositorioDeMotoristas {
     public List<Motorista> getMotoristas(){
         return motoristas;
     }
-    // TO DO: Motorista(String cpf, String nome, Veiculo veiculo){
-    // colocar em Motorista outros campos (forma de pagamento???)
-    // colocar oustro campos no construtor de vaiculo
+
     public void carregaMotoristas() throws FileNotFoundException{
-        List<String[]> lst = GetRawData.fromCSV("Ymotoristas.dat");
+        List<String[]> lst = GetRawData.fromCSV("motoristas.dat");
         for (String[] data: lst){
             String cpf = data[0];
             String nome = data[1];
@@ -65,15 +63,12 @@ public class RepositorioDeMotoristas {
             String[] s = {m.getCpf(), m.getNome(), String.valueOf(m.getNota()), String.valueOf(m.getQuantAvaliacoes()), a, String.valueOf(m.getVeiculo().getPlaca()), String.valueOf(m.getVeiculo().getMarca()), String.valueOf(m.getVeiculo().getCor()), String.valueOf(m.getVeiculo().getTipo()), String.valueOf(m.getVeiculo().getBagageiro())};
             l.add(s);
         }
-        System.out.println(l.toString());
-        Writer.toCSV("YYmotoristas.dat", l);
+        Writer.toCSV("motoristas.dat", l);
     }
 
     public static void add(Motorista motorista){
         motoristas.add(motorista);
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        new RepositorioDeMotoristas();
-    }
+
 }

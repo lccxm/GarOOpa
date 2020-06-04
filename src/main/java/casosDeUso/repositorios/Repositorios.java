@@ -16,9 +16,7 @@ public class Repositorios {
         new RepositorioDeViagens();
     }
 
-    public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
 
-    }
 
     public static void persiste() throws IOException {
         RepositorioDeBairros.persiste();

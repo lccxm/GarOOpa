@@ -2,6 +2,7 @@ package casosDeUso.servicos;
 
 import casosDeUso.politicas.PrecoViagem;
 import entidades.Motorista;
+import entidades.Passageiro;
 import entidades.Viagem;
 
 public class ViagemParaExibicao {
@@ -58,6 +59,10 @@ public class ViagemParaExibicao {
 
     public String getBairroDestino() {
         return this.bairroDestino;
+    }
+
+    public Passageiro getPassageiro(){
+        return this.viagem.getPassageiro();
     }
 
 

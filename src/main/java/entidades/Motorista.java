@@ -4,14 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Motorista {
-//    public static void main(String[] args){
-//        Veiculo veiculo = new Veiculo("a","b","azul", TipoVeiculo.LUXO);
-//        Motorista motorista = new Motorista("1","carlos",veiculo);
-//        motorista.atualizaNota(7);
-//        motorista.atualizaNota(7);
-//
-//    }
-
     private String cpf;
     private String nome;
     private int somaAvaliacoes;

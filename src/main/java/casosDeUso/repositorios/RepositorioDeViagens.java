@@ -31,7 +31,7 @@ public class RepositorioDeViagens {
     // To DO: tirar list do contrutor de cidades (inicia vazia)
     // e inserir metodo addBairro 
     private void carregaViagens() throws FileNotFoundException, IllegalArgumentException {
-        List<String[]> lst = GetRawData.fromCSV("Yviagens.dat");
+        List<String[]> lst = GetRawData.fromCSV("viagens.dat");
 
         for (String[] data: lst){
             int identificador = Integer.parseInt(data[0]);
@@ -75,17 +75,13 @@ public class RepositorioDeViagens {
     public static void persiste() throws IOException {
         List<String[]> l = new ArrayList<>();
         for (Viagem v: viagens){
-            String[] s = {String.valueOf(v.getIdentificador()), String.valueOf(v.getDataHora()), v.getRoteiro().getBairroOrigem().getNome(), v.getRoteiro().getBairroDestino().getNome(), v.getRoteiro().getCidade().getNome(), v.getMotorista().getCpf(),v.getPassageiro().getCpf(), String.valueOf(v.getCusto())};
-            for (int i=0; i<s.length; i++){
-                System.out.println(s[i]);
-            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss");
+            String data = v.getDataHora().format(formatter);
+            String[] s = {String.valueOf(v.getIdentificador()), data, v.getRoteiro().getBairroOrigem().getNome(), v.getRoteiro().getBairroDestino().getNome(), v.getRoteiro().getCidade().getNome(), v.getMotorista().getCpf(),v.getPassageiro().getCpf(), String.valueOf(v.getCusto())};
             l.add(s);
         }
-        System.out.println(l.toString());
-        Writer.toCSV("YYYYYviagens.dat", l);
+        Writer.toCSV("viagens.dat", l);
     }
 
-    public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException {
-        new RepositorioDeViagens();
-    }
+
 }

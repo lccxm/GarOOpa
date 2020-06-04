@@ -3,15 +3,19 @@ package apresentacao;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import casosDeUso.repositorios.RepositorioDeBairros;
+import casosDeUso.repositorios.RepositorioDeMotoristas;
 import casosDeUso.repositorios.RepositorioDeViagens;
 import casosDeUso.repositorios.Repositorios;
 import casosDeUso.servicos.ServicosDoPassageiro;
 import casosDeUso.servicos.ViagemParaExibicao;
 import entidades.FormaPgto;
+import entidades.Motorista;
 import entidades.TipoVeiculo;
+import entidades.Viagem;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -40,14 +44,16 @@ public class App extends Application implements EventHandler<ActionEvent> {
     // private Cart cart;
 
     // private ComboBox<Produto> cbProdutos;
-    private TextField cpf, bairroOrigem, bairroDestino, tfTotal;
+    private TextField cpf, bairroOrigem, bairroDestino, tfTotal, MdataViagem, MbairroOrigem, MbairroDestino, MCusto, MAvaliacao;
     private TextField tfDesconto, tfTaxaEntrega, tfICMS, tfISSQN, tfTotalPagar, nomeMotorista, placaVeiculo,
-            marcaVeiculo, custoCorrida, pontMotorista;
+            marcaVeiculo, custoCorrida, pontMotorista, nomeMot, cpfMot;
     private TextArea taCart;
     private ComboBox<FormaPgto> cbxFormaPgto;
     private ComboBox<TipoVeiculo> cbxTipoVeiculo;
     private ViagemParaExibicao viagem;
     private ServicosDoPassageiro sp;
+    private List<Viagem> viagens;
+    private ComboBox<String> cbViagens;
 
     public static HBox criaCampoTexto(String label, TextField tf) {
         HBox hb = new HBox();
@@ -67,18 +73,6 @@ public class App extends Application implements EventHandler<ActionEvent> {
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException, IOException {
         Repositorios.carregaTodos();
-        // Repositorios.persiste();
-        /*
-         * try { Repositorios.carregaTodos(); } catch (IllegalArgumentException e2) { //
-         * TODO Auto-generated catch block e2.printStackTrace(); }
-         */
-        /*
-         * Repositorios r = new Repositorios(); r.carregaTodos();
-         */
-        // Instancia estruturas de dados
-        // cadProd = CadastroProduto.getInstance();
-        // cart = new Cart();
-        // Define o grid basico
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);
@@ -203,6 +197,8 @@ public class App extends Application implements EventHandler<ActionEvent> {
         });
         topGrid.add(btOkAvalMotorista, 3, 16);
 
+        
+
         /*
          * List<Produto> produtos = new ArrayList<>(); for(ProdutoDTO p:cadProd){
          * produtos.add(EntidadeDTOConverter.Dto2Prod(p)); } // Monta o combo de
@@ -257,8 +253,124 @@ public class App extends Application implements EventHandler<ActionEvent> {
         primaryStage.setTitle("Garoopa");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        
+        GridPane outroGrid = new GridPane();
+        outroGrid.setAlignment(Pos.BASELINE_LEFT);
+        outroGrid.setHgap(4);
+        outroGrid.setVgap(6);
+
+        Label titOutro = new Label("Tela do Motorista: ");
+        titOutro.setFont(Font.font("Tahoma", FontWeight.BOLD, 15));
+        outroGrid.add(titOutro, 1, 1);
+
+        
+        outroGrid.add(new Label("CPF do motorista: "), 1, 2);
+        cpfMot = new TextField();
+        outroGrid.add(cpfMot, 2, 2);
+
+        Button buscarMot = new Button("Buscar");
+        outroGrid.add(buscarMot, 2, 3);
+        buscarMot.setOnAction(e -> {
+            try {
+                this.trataBtBuscarMot(e);
+            } catch (IOException | IllegalArgumentException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }); 
+
+        outroGrid.add(new Label("Nome: "), 1, 4);
+        nomeMot = new TextField();
+        outroGrid.add(nomeMot, 2, 4);
+
+        cbViagens = new ComboBox<String>();
+        
+        //cbViagens.getItems().addAll(viagens);
+        outroGrid.add(cbViagens, 2, 5);
+        outroGrid.add(new Label("Selecione a viagem: "), 1, 6);
+
+        Button btgetViagem = new Button("Escolher viagem");
+        outroGrid.add(btgetViagem, 2, 6);
+        btgetViagem.setOnAction(e -> {
+            try {
+                this.trataBtGetViagem(e);
+            } catch (IOException | IllegalArgumentException e1) {
+                e1.printStackTrace();
+            }
+        }); 
+
+        outroGrid.add(new Label("Data: "), 1, 7);
+        MdataViagem = new TextField();
+        outroGrid.add(MdataViagem, 2, 7);
+
+        outroGrid.add(new Label("Bairro de origem: "), 1, 8);
+        MbairroOrigem = new TextField();
+        outroGrid.add(MbairroOrigem, 2, 8);
+
+        outroGrid.add(new Label("Bairro destino: "), 1, 9);
+        MbairroDestino = new TextField();
+        outroGrid.add(MbairroDestino, 2, 9);
+
+        outroGrid.add(new Label("Custo: "), 1,10);
+        MCusto = new TextField();
+        outroGrid.add(MCusto, 2,10);
+
+        outroGrid.add(new Label("Avaliacao: "), 1, 11);
+        MAvaliacao = new TextField();
+        outroGrid.add(MAvaliacao, 2, 11);
+
+        Button btAvaliarPassageiro = new Button("Avaliar passageiro");
+        outroGrid.add(btAvaliarPassageiro, 2, 12);
+        btAvaliarPassageiro.setOnAction(e -> {
+            try {
+                this.trataBtAvaliarPassageiro(e);
+            } catch (IOException | IllegalArgumentException e1) {
+                e1.printStackTrace();
+            }
+        }); 
+
+        
+        StackPane layout2 = new StackPane();
+        layout2.getChildren().add(outroGrid);
+
+        Stage segundoStage = new Stage();
+        Scene scene2 = new Scene(layout2, 800, 550);
+        segundoStage.setTitle("Garoopa2222");
+        segundoStage.setScene(scene2);
+        segundoStage.show();
+        
+
+
+
+
     }
 
+
+    public void trataBtAvaliarPassageiro(ActionEvent event) throws IllegalArgumentException, IOException {
+        viagem.getPassageiro().atualizaNota(Integer.parseInt(MAvaliacao.getText()));
+        Repositorios.persiste();
+    }
+
+    public void trataBtGetViagem(ActionEvent event) throws IllegalArgumentException, IOException {
+        Viagem v = RepositorioDeViagens.getViagemById(Integer.parseInt(cbViagens.getSelectionModel().getSelectedItem()));
+        MdataViagem.setText(v.getDataHora().toString());
+        MbairroOrigem.setText(v.getRoteiro().getBairroOrigem().getNome());
+        MbairroDestino.setText(v.getRoteiro().getBairroDestino().getNome());
+        MCusto.setText(String.valueOf(v.getCusto()));
+        viagem = new ViagemParaExibicao(v);
+    }
+
+    public void trataBtBuscarMot(ActionEvent event) throws IllegalArgumentException, IOException {
+        nomeMot.setText(RepositorioDeMotoristas.getMotoristaByCPF(cpfMot.getText()).getNome());
+        Motorista mot = RepositorioDeMotoristas.getMotoristaByCPF(cpfMot.getText());
+        List<Viagem> viagens = RepositorioDeViagens.getViagensByMotorista(mot);
+        List<String> lst = new LinkedList<>();
+        for (Viagem v: viagens)
+            lst.add(String.valueOf(v.getIdentificador()));
+        cbViagens.getItems().setAll(lst);
+    }
+    
     public void trataBotaoBuscaMot(ActionEvent event) throws IllegalArgumentException, IOException {
         sp = null;
         sp = new ServicosDoPassageiro(cpf.getText(), bairroOrigem.getText(), bairroDestino.getText(), 
@@ -299,6 +411,8 @@ public class App extends Application implements EventHandler<ActionEvent> {
     public void trataBotaoGravar(ActionEvent event) throws IllegalArgumentException, IOException {
         Repositorios.persiste();
     }
+
+
 
     public void trataBotaoRemove(ActionEvent event){
 //        cart.removeLast();

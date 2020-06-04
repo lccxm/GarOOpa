@@ -1,15 +1,6 @@
 package entidades.Roteiro;
 
 public class Cohen {
-//    public static void main(String[] args) throws IllegalArgumentException {
-//        Ponto p1 = new Ponto(7, 9);
-//        Ponto p2 = new Ponto(11, 4);
-//        Reta rTest = new Reta(p1, p2);
-//        Ponto p3 = new Ponto(10, 8);
-//        Ponto p4 = new Ponto(4, 4);
-//        Area aTest = new Area(p3, p4);
-//        Cohen c = new Cohen(aTest, rTest);
-//    }
 
     public static int INSIDE = 0;  //0000
     public static int LEFT = 1;    // 0001
